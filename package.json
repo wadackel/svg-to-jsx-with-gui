@@ -1,0 +1,40 @@
+{
+  "private": true,
+  "scripts": {
+    "start": "webpack-dev-server",
+    "build": "echo \"todo\" && exit 1",
+    "test": "echo \"todo\" && exit 1",
+    "deploy": "echo \"todo\" && exit 1"
+  },
+  "author": "tsuyoshiwada",
+  "license": "MIT",
+  "dependencies": {
+    "@tsuyoshiwada/htmltojsx": "^0.0.4",
+    "babel-polyfill": "^6.23.0",
+    "normalize.css": "^7.0.0",
+    "prettier": "^1.5.3",
+    "react": "^15.6.1",
+    "react-codemirror": "^1.0.0",
+    "react-dom": "^15.6.1",
+    "styled-components": "^2.1.1",
+    "svgo": "^0.7.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-1": "^6.24.1",
+    "css-loader": "^0.28.4",
+    "cssnano": "^3.10.0",
+    "gh-pages": "^1.0.0",
+    "html-webpack-plugin": "^2.30.0",
+    "postcss-cssnext": "^3.0.2",
+    "postcss-easy-import": "^2.1.0",
+    "postcss-loader": "^2.0.6",
+    "react-hot-loader": "next",
+    "style-loader": "^0.18.2",
+    "webpack": "^3.3.0",
+    "webpack-dev-server": "^2.5.1"
+  }
+}
