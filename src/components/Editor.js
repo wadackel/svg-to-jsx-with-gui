@@ -50,6 +50,11 @@ const EditorWrapper = styled.div`
   }
 `;
 
+const EditorButtonList = styled.div`
+  margin-right: -20px;
+  text-align: right;
+`;
+
 export default class Editor extends Component {
   static defaultProps = {
     readOnly: false,
@@ -79,6 +84,7 @@ export default class Editor extends Component {
       mode,
       readOnly,
       options,
+      buttons,
       ...rest
     } = this.props;
 
@@ -88,6 +94,16 @@ export default class Editor extends Component {
           <EditorTitle>
             {title}
           </EditorTitle>
+          {buttons &&
+            <EditorButtonList>
+              {buttons.map((button, index) => (
+                React.cloneElement(button, {
+                  ...button.props,
+                  key: index,
+                })
+              ))}
+            </EditorButtonList>
+          }
         </EditorHeader>
 
         <CodeMirror

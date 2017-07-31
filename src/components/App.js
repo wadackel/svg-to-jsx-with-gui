@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Footer from './Footer';
 import Editor from './Editor';
+import EditorButton from './EditorButton';
+import { Copy, Download } from '../icons/';
 import { factory } from '../utils/svg2jsx';
 import makeCancelable from '../utils/makeCancelable';
 import fixture from '../fixture';
@@ -11,8 +13,9 @@ const EditorRow = styled.div`
   display: flex;
 
   & > div {
-    flex: 1 1 auto;
+    flex: 1 1 50%;
     position: relative;
+    max-width: 50%;
 
     &:not(:first-child)::before {
       display: block;
@@ -99,6 +102,18 @@ export default class App extends Component {
               readOnly
               title="JSX"
               value={jsx}
+              buttons={[
+                <EditorButton
+                  icon={<Copy />}
+                >
+                  Copy
+                </EditorButton>,
+                <EditorButton
+                  icon={<Download />}
+                >
+                  Download
+                </EditorButton>,
+              ]}
             />
           </div>
         </EditorRow>
