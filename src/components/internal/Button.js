@@ -9,7 +9,7 @@ const Button = styled.button`
   padding: 0;
   border: none;
   border-radius: 0;
-  font-weight: normal;
+  font-weight: bold;
   font-family: inherit;
   vertical-align: middle;
   line-height: 1.4;

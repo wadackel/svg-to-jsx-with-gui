@@ -11,11 +11,13 @@
   "dependencies": {
     "@tsuyoshiwada/htmltojsx": "^0.0.4",
     "babel-polyfill": "^6.23.0",
+    "inline-style-prefixer": "^3.0.7",
     "normalize.css": "^7.0.0",
     "prettier": "^1.5.3",
     "react": "^15.6.1",
     "react-codemirror": "^1.0.0",
     "react-dom": "^15.6.1",
+    "react-transition-group": "1.x",
     "styled-components": "^2.1.1",
     "svgo": "^0.7.2"
   },

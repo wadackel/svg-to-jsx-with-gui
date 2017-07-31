@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import Footer from './Footer';
+import Settings from './Settings';
 import Editor from './Editor';
 import EditorButton from './EditorButton';
 import { Copy, Download } from '../icons/';
@@ -119,6 +120,8 @@ export default class App extends Component {
         </EditorRow>
 
         <Footer />
+
+        <Settings />
       </div>
     );
   }
