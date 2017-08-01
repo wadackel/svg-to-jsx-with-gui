@@ -1,7 +1,10 @@
 /* eslint-disable */
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import CodeMirror from 'react-codemirror';
+import AceEditor from 'react-ace';
+import 'brace/mode/html';
+import 'brace/mode/jsx';
+import 'brace/theme/monokai';
 
 const EditorHeader = styled.div`
   display: flex;
@@ -28,25 +31,65 @@ const EditorWrapper = styled.div`
   font-size: 14px;
   line-height: 1.6;
 
-  & .CodeMirror {
+  & .ace_editor {
     position: absolute;
-    top: 50px;
+    top: 40px;
     right: 0;
     left: 0;
-    height: calc(100% - 50px);
+    width: 100% !important;
+    height: calc(100% - 40px) !important;
+    color: #ccc !important;
   }
 
-  & .CodeMirror,
-  & .CodeMirror-gutters {
+  & .ace_editor,
+  & .ace_gutter {
     background: #353954 !important;
   }
 
-  & .CodeMirror-linenumber {
+  & .ace_marker-layer .ace_selection {
+    background: #484d71 !important;
+  }
+
+  & .ace_gutter {
     color: #4c5275 !important;
   }
 
-  & .CodeMirror-scrollbar-filler {
-    background: transparent;
+  & .ace_gutter-active-line,
+  & .ace_marker-layer .ace_active-line {
+    background: #2e334d !important;
+  }
+
+  & .ace_scroller.ace_scroll-left {
+    box-shadow: 17px 0 16px -16px rgba(0, 0, 0, 0.2) inset !important;
+  }
+
+  & .ace_entity,
+  & .ace_keyword,
+  & .ace_meta.ace_tag,
+  & .ace_storage {
+    color: #dd9999 !important;
+  }
+
+  & .ace_entity.ace_name.ace_function,
+  & .ace_entity.ace_other,
+  & .ace_entity.ace_other.ace_attribute-name,
+  & .ace_variable {
+    color: #71ddf1 !important;
+  }
+
+  & .ace_string {
+    color: #fff8b7 !important;
+  }
+
+  & .ace_storage.ace_type,
+  & .ace_support.ace_class,
+  & .ace_support.ace_type {
+    color: #5092e3;
+    font-style: normal !important;
+  }
+
+  & .ace_comment {
+    color: #818495 !important;
   }
 `;
 
@@ -56,24 +99,6 @@ const EditorButtonList = styled.div`
 `;
 
 export default class Editor extends Component {
-  static defaultProps = {
-    readOnly: false,
-    options: {
-      mode: 'html',
-      theme: 'material',
-      lineNumbers: true,
-    },
-  };
-
-  componentWillReceiveProps(nextProps) {
-    const { value: _value } = this.props;
-    const { value, readOnly } = nextProps;
-
-    if (readOnly && value !== _value && this.editor) {
-      this.editor.getCodeMirror().doc.setValue(value);
-    }
-  }
-
   handleRef = (editor) => {
     this.editor = editor;
   };
@@ -81,9 +106,6 @@ export default class Editor extends Component {
   render() {
     const {
       title,
-      mode,
-      readOnly,
-      options,
       buttons,
       ...rest
     } = this.props;
@@ -106,14 +128,12 @@ export default class Editor extends Component {
           }
         </EditorHeader>
 
-        <CodeMirror
+        <AceEditor
           {...rest}
+          fontSize={13}
+          editorProps={{$blockScrolling: false}}
+          theme="monokai"
           ref={this.handleRef}
-          options={{
-            ...options,
-            mode,
-            readOnly,
-          }}
         />
       </EditorWrapper>
     );

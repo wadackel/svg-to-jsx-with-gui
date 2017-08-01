@@ -93,6 +93,7 @@ export default class App extends Component {
         <EditorRow>
           <div>
             <Editor
+              mode="html"
               title="SVG"
               value={svg}
               onChange={this.handleChange}
@@ -101,6 +102,7 @@ export default class App extends Component {
           <div>
             <Editor
               readOnly
+              mode="jsx"
               title="JSX"
               value={jsx}
               buttons={[

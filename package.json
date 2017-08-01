@@ -15,7 +15,7 @@
     "normalize.css": "^7.0.0",
     "prettier": "^1.5.3",
     "react": "^15.6.1",
-    "react-codemirror": "^1.0.0",
+    "react-ace": "^5.1.1",
     "react-dom": "^15.6.1",
     "react-drip-form": "^0.0.3",
     "react-drip-form-components": "^0.0.2",
