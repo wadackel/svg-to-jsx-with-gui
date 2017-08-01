@@ -25,7 +25,7 @@ export const SettingsForm = () => (
       <Checkbox value="removeEmptyText">Remove empty text</Checkbox>
       <Checkbox value="removeHiddenElems">Remove hidden elements</Checkbox>
       <Checkbox value="removeMetadata">Remove <code>&lt;metadata&gt;</code></Checkbox>
-      <Checkbox value="removeMetadata">Remove <code>&lt;title&gt;</code></Checkbox>
+      <Checkbox value="removeTitle">Remove <code>&lt;title&gt;</code></Checkbox>
       <Checkbox value="removeUselessDefs">Remove unused defs</Checkbox>
       <Checkbox value="removeUselessStrokeAndFill">Remove useless stroke & fill</Checkbox>
       <Checkbox value="removeViewBox">Remove viewBox</Checkbox>

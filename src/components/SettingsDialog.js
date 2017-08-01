@@ -1,17 +1,8 @@
 import React, { Component } from 'react';
-import TransitionGroup from 'react-transition-group/TransitionGroup';
 import styled from 'styled-components';
-import Prefixer from 'inline-style-prefixer';
 import SettingsForm from './SettingsForm';
 import Button from './internal/Button';
 import { Close } from '../icons/';
-
-const prefixer = new Prefixer();
-
-const Duration = {
-  ENTER: 220,
-  LEAVE: 80,
-};
 
 const DialogWrapper = styled.div`
   position: fixed;
@@ -24,6 +15,34 @@ const DialogWrapper = styled.div`
   background: #fff;
   overflow-x: hidden;
   overflow-y: auto;
+  transition-property: opacity, visibility, transform;
+  transition-timing-function: ease-out;
+
+  &.dialog-enter {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-15px);
+  }
+
+  &.dialog-enter.dialog-enter-active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition-duration: 320ms;
+  }
+
+  &.dialog-leave {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  &.dialog-leave.dialog-leave-active {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-5px);
+    transition-duration: 120ms;
+  }
 `;
 
 const DialogInner = styled.div`
@@ -38,6 +57,15 @@ const DialogInner = styled.div`
   & h3 {
     margin: 60px 0 30px;
     font-size: 1.5rem;
+  }
+
+  & code {
+    display: inline-block;
+    padding: 0.1em 0.4em;
+    background: #f0f0f0;
+    border-radius: 3px;
+    font-size: 0.85em;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
   }
 `;
 
@@ -73,46 +101,6 @@ const CloseButton = Button.extend`
 
 
 export default class SettingsDialog extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = prefixer.prefix({
-      transition: `all ${Duration.ENTER}ms ease-out`,
-    });
-  }
-
-  setStyles(styles, callback) {
-    this.setState(prefixer.prefix({
-      ...this.state.styles,
-      ...styles,
-    }), callback);
-  }
-
-  componentWillEnter(callback) {
-    this.setStyles({
-      opacity: 0,
-      transform: 'translateY(-10px)',
-    });
-
-    setTimeout(callback, 16);
-  }
-
-  componentDidEnter() {
-    this.setStyles({
-      opacity: 1,
-      transform: 'translateY(0)',
-    });
-  }
-
-  componentWillLeave(callback) {
-    this.setStyles({
-      opacity: 0,
-      transform: 'translateY(0)',
-      transition: `all ${Duration.LEAVE}ms ease-out`,
-    });
-    setTimeout(callback, Duration.LEAVE);
-  }
-
   handleCloseClick = (e) => {
     e.preventDefault();
 
@@ -123,15 +111,15 @@ export default class SettingsDialog extends Component {
 
   render() {
     return (
-      <DialogWrapper style={this.state}>
-        <DialogInner>
-          <CloseButton onClick={this.handleCloseClick}>
-            <div>
-              <Close />
-              Close
-            </div>
-          </CloseButton>
+      <DialogWrapper>
+        <CloseButton onClick={this.handleCloseClick}>
+          <div>
+            <Close />
+            Close
+          </div>
+        </CloseButton>
 
+        <DialogInner style={this.state}>
           <SettingsForm
             onChange={console.log}
           />
