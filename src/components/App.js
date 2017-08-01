@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import Footer from './Footer';
@@ -7,6 +6,8 @@ import Editor from './Editor';
 import EditorButton from './EditorButton';
 import { Copy, Download } from '../icons/';
 import { factory } from '../utils/svg2jsx';
+import svgoProcessor from '../utils/processors/svgo';
+import html2jsxProcessor from '../utils/processors/html2jsx';
 import makeCancelable from '../utils/makeCancelable';
 import fixture from '../fixture';
 
@@ -66,9 +67,20 @@ export default class App extends Component {
       },
     };
 
-    this.svg2jsx = factory();
+    this.svg2jsx = this.createConverter();
     this.promise = null;
     this.cancel = null;
+  }
+
+  createConverter() {
+    const { settings } = this.state;
+
+    return factory(
+      svgoProcessor(settings.svgoPlugins),
+      html2jsxProcessor({
+        indent: ''.repeat(settings.editor.tabSize),
+      })
+    );
   }
 
   componentWillMount() {
@@ -85,7 +97,10 @@ export default class App extends Component {
   };
 
   handleSettingChange = (settings) => {
-    this.setState({ settings });
+    this.setState({ settings }, () => {
+      this.svg2jsx = this.createConverter();
+      this.compile(this.state.svg);
+    });
   };
 
   async compile(svg) {
