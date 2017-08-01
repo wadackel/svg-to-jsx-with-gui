@@ -17,6 +17,8 @@
     "react": "^15.6.1",
     "react-codemirror": "^1.0.0",
     "react-dom": "^15.6.1",
+    "react-drip-form": "^0.0.3",
+    "react-drip-form-components": "^0.0.2",
     "react-transition-group": "1.x",
     "styled-components": "^2.1.1",
     "svgo": "^0.7.2"

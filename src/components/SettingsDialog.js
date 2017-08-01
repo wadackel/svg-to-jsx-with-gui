@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
 import styled from 'styled-components';
 import Prefixer from 'inline-style-prefixer';
+import SettingsForm from './SettingsForm';
 import Button from './internal/Button';
 import { Close } from '../icons/';
 
@@ -131,9 +132,9 @@ export default class SettingsDialog extends Component {
             </div>
           </CloseButton>
 
-          <h2>Settings</h2>
-          <h3>SVGO <small>svg transformer</small></h3>
-          <p>__TODO__</p>
+          <SettingsForm
+            onChange={console.log}
+          />
         </DialogInner>
       </DialogWrapper>
     );
