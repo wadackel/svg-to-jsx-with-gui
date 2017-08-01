@@ -99,6 +99,11 @@ const EditorButtonList = styled.div`
 `;
 
 export default class Editor extends Component {
+  static defaultProps = {
+    showGutter: false,
+    useSoftTabs: false,
+  };
+
   handleRef = (editor) => {
     this.editor = editor;
   };
@@ -107,6 +112,7 @@ export default class Editor extends Component {
     const {
       title,
       buttons,
+      useSoftTabs,
       ...rest
     } = this.props;
 
@@ -130,8 +136,11 @@ export default class Editor extends Component {
 
         <AceEditor
           {...rest}
-          fontSize={13}
-          editorProps={{$blockScrolling: false}}
+          showPrintMargin={false}
+          setOptions={{
+            displayIndentGuides: true,
+            useSoftTabs,
+          }}
           theme="monokai"
           ref={this.handleRef}
         />

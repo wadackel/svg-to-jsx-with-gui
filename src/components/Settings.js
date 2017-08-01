@@ -73,14 +73,14 @@ export default class Settings extends Component {
     this.setState({ open: true });
   };
 
-  handleClose = () => {
+  handleClose = (values) => {
     this.setState({ open: false });
+    this.props.onChange(values);
   };
 
   render() {
-    const {
-      open,
-    } = this.state;
+    const { open } = this.state;
+    const { settings } = this.props;
 
     return (
       <div>
@@ -93,6 +93,7 @@ export default class Settings extends Component {
         >
           {open &&
             <SettingsDialog
+              values={settings}
               onRequestClose={this.handleClose}
             />
           }

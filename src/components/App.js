@@ -41,6 +41,28 @@ export default class App extends Component {
       svg: fixture,
       jsx: '',
       settings: {
+        svgoPlugins: [
+          'convertColors',
+          'collapseGroups',
+          'removeDimensions',
+          'removeDesc',
+          'removeDoctype',
+          'removeEditorsNSData',
+          'removeEmptyAttrs',
+          'removeEmptyContainers',
+          'removeEmptyText',
+          'removeHiddenElems',
+          'removeMetadata',
+          'removeUselessDefs',
+          'removeUselessStrokeAndFill',
+          'removeXMLProcInst',
+        ],
+        editor: {
+          fontSize: 13,
+          tabSize: 2,
+          showGutter: true,
+          useSoftTabs: true,
+        },
       },
     };
 
@@ -60,6 +82,10 @@ export default class App extends Component {
   handleChange = async (svg) => {
     this.setState({ svg });
     this.compile(svg);
+  };
+
+  handleSettingChange = (settings) => {
+    this.setState({ settings });
   };
 
   async compile(svg) {
@@ -97,6 +123,7 @@ export default class App extends Component {
               title="SVG"
               value={svg}
               onChange={this.handleChange}
+              {...settings.editor}
             />
           </div>
           <div>
@@ -117,13 +144,17 @@ export default class App extends Component {
                   Download
                 </EditorButton>,
               ]}
+              {...settings.editor}
             />
           </div>
         </EditorRow>
 
         <Footer />
 
-        <Settings />
+        <Settings
+          settings={settings}
+          onChange={this.handleSettingChange}
+        />
       </div>
     );
   }

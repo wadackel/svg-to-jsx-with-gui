@@ -57,6 +57,10 @@ const DialogInner = styled.div`
   & h3 {
     margin: 60px 0 30px;
     font-size: 1.5rem;
+
+    & small {
+      font-size: 0.75rem;
+    }
   }
 
   & code {
@@ -101,15 +105,21 @@ const CloseButton = Button.extend`
 
 
 export default class SettingsDialog extends Component {
+  handleFormRef = (form) => {
+    this.form = form;
+  };
+
   handleCloseClick = (e) => {
     e.preventDefault();
 
-    if (typeof this.props.onRequestClose === 'function') {
-      this.props.onRequestClose();
+    if (this.form.isValid()) {
+      this.props.onRequestClose(this.form.getValues());
     }
   };
 
   render() {
+    const { values, onChange } = this.props;
+
     return (
       <DialogWrapper>
         <CloseButton onClick={this.handleCloseClick}>
@@ -121,7 +131,9 @@ export default class SettingsDialog extends Component {
 
         <DialogInner style={this.state}>
           <SettingsForm
-            onChange={console.log}
+            onInitialize={this.handleFormRef}
+            values={values}
+            onChange={onChange}
           />
         </DialogInner>
       </DialogWrapper>
