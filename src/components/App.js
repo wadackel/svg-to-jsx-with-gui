@@ -4,6 +4,7 @@ import Footer from './Footer';
 import Settings from './Settings';
 import Editor from './Editor';
 import EditorButton from './EditorButton';
+import withCopy from './hoc/withCopy';
 import { Copy, Download } from '../icons/';
 import { factory } from '../utils/svg2jsx';
 import svgoProcessor from '../utils/processors/svgo';
@@ -33,6 +34,9 @@ const EditorRow = styled.div`
     }
   }
 `;
+
+const EditorCopyButton = withCopy(EditorButton);
+
 
 export default class App extends Component {
   constructor(props) {
@@ -148,11 +152,19 @@ export default class App extends Component {
               title="JSX"
               value={jsx}
               buttons={[
-                <EditorButton
+                <EditorCopyButton
                   icon={<Copy />}
-                >
-                  Copy
-                </EditorButton>,
+                  textBy={() => jsx}
+                  renderer={(success, failure) => {
+                    if (!success && !failure) {
+                      return 'Copy';
+                    } else if (success) {
+                      return 'Copied!';
+                    } else {
+                      return 'Error...';
+                    }
+                  }}
+                />,
                 <EditorButton
                   icon={<Download />}
                 >

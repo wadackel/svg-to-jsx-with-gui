@@ -11,6 +11,7 @@
   "dependencies": {
     "@tsuyoshiwada/htmltojsx": "^0.0.4",
     "babel-polyfill": "^6.23.0",
+    "clipboard": "^1.7.1",
     "grid-styled": "^2.0.0-10",
     "inline-style-prefixer": "^3.0.7",
     "normalize.css": "^7.0.0",
@@ -21,6 +22,7 @@
     "react-drip-form": "^0.0.3",
     "react-drip-form-components": "^0.0.2",
     "react-transition-group": "1.x",
+    "recompose": "^0.24.0",
     "styled-components": "^2.1.1",
     "svgo": "^0.7.2"
   },
