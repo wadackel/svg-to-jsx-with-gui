@@ -9,6 +9,7 @@ import EditorButton from './EditorButton';
 import withCopy from './hoc/withCopy';
 import { Copy, Download } from '../icons/';
 import { factory } from '../utils/svg2jsx';
+import filterSvgProcessor from '../utils/processors/filterSvg';
 import svgoProcessor from '../utils/processors/svgo';
 import html2jsxProcessor from '../utils/processors/html2jsx';
 import makeCancelable from '../utils/makeCancelable';
@@ -78,23 +79,24 @@ export default class App extends Component {
     this.cancel = null;
   }
 
-  createConverter() {
-    const { settings } = this.state;
-
-    return factory(
-      svgoProcessor(settings.svgoPlugins),
-      html2jsxProcessor({
-        indent: ''.repeat(settings.editor.tabSize),
-      })
-    );
-  }
-
   componentWillMount() {
     this.compile(this.state.svg);
   }
 
   componentWillUnmount() {
     this.cancelIfNeeded();
+  }
+
+  createConverter() {
+    const { settings } = this.state;
+
+    return factory(
+      filterSvgProcessor(),
+      svgoProcessor(settings.svgoPlugins),
+      html2jsxProcessor({
+        indent: ''.repeat(settings.editor.tabSize),
+      }),
+    );
   }
 
   async compile(svg) {

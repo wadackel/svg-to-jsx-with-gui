@@ -47,16 +47,12 @@ const pluginsData = {
   removeXMLProcInst,
 };
 
-const svgoProcessor = (options) => {
-  const array = options.map((name) => {
-      if (!pluginsData[name]) {
-        return null;
-      }
-      return pluginsData[name];
-    })
+const createSvgoPluginList = (options) => {
+  const array = options
+    .map(name => pluginsData[name] ? pluginsData[name] : null)
     .filter(plugin => !!plugin);
 
-  const opts = array.reduce((previous, current) => {
+  return array.reduce((previous, current) => {
     let groupExists = false;
 
     const results = previous.map((data) => {
@@ -69,6 +65,10 @@ const svgoProcessor = (options) => {
 
     return !groupExists ? [...results, [current]] : results;
   }, [[array.shift()]]);
+};
+
+const svgoProcessor = (options) => {
+  const opts = createSvgoPluginList(options);
 
   return async (value) => new Promise((resolve, reject) => {
     svg2js(value, (svg) => {
