@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import keycode from 'keycode';
 import { easings } from '../styles';
 import SettingsForm from './SettingsForm';
 import Button from './internal/Button';
@@ -18,6 +19,10 @@ const DialogWrapper = styled.div`
   overflow-y: auto;
   transition-property: opacity, visibility, transform;
   transition-timing-function: ${easings.easeOutQuart};
+
+  &:focus {
+    outline: none;
+  }
 
   &.dialog-enter {
     opacity: 0;
@@ -106,8 +111,34 @@ const CloseButton = Button.extend`
 
 
 export default class SettingsDialog extends Component {
+  mounted = false;
+
+  componentDidMount() {
+    this.mounted = true;
+  }
+
+  componentWillUnmount() {
+    this.mounted = false;
+  }
+
+  handleRef = (dialog) => {
+    this.dialog = dialog;
+  };
+
   handleFormRef = (form) => {
     this.form = form;
+  };
+
+  handleTransitionEnd = (e) => {
+    if (this.mounted && e.target === this.dialog) {
+      this.dialog.focus();
+    }
+  };
+
+  handleKeyDown = (e) => {
+    if (keycode(e) === 'esc' && this.form.isValid()) {
+      this.props.onRequestClose(this.form.getValues());
+    }
   };
 
   handleCloseClick = (e) => {
@@ -122,7 +153,12 @@ export default class SettingsDialog extends Component {
     const { values, onChange } = this.props;
 
     return (
-      <DialogWrapper>
+      <DialogWrapper
+        innerRef={this.handleRef}
+        tabIndex="-1"
+        onKeyDown={this.handleKeyDown}
+        onTransitionEnd={this.handleTransitionEnd}
+      >
         <CloseButton onClick={this.handleCloseClick}>
           <div>
             <Close />
