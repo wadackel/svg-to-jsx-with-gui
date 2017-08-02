@@ -13,7 +13,11 @@ import filterSvgProcessor from '../utils/processors/filterSvg';
 import svgoProcessor from '../utils/processors/svgo';
 import html2jsxProcessor from '../utils/processors/html2jsx';
 import makeCancelable from '../utils/makeCancelable';
-import fixture from '../fixture';
+import {
+  defaultSvgoPlugins,
+  defaultEditorSettings,
+  defaultSvgString,
+} from '../constants';
 
 const EditorRow = styled.div`
   display: flex;
@@ -46,31 +50,11 @@ export default class App extends Component {
     super(props);
 
     this.state = {
-      svg: fixture,
+      svg: defaultSvgString,
       jsx: '',
       settings: {
-        svgoPlugins: [
-          'convertColors',
-          'collapseGroups',
-          'removeDimensions',
-          'removeDesc',
-          'removeDoctype',
-          'removeEditorsNSData',
-          'removeEmptyAttrs',
-          'removeEmptyContainers',
-          'removeEmptyText',
-          'removeHiddenElems',
-          'removeMetadata',
-          'removeUselessDefs',
-          'removeUselessStrokeAndFill',
-          'removeXMLProcInst',
-        ],
-        editor: {
-          fontSize: 13,
-          tabSize: 2,
-          showGutter: true,
-          useSoftTabs: true,
-        },
+        svgoPlugins: defaultSvgoPlugins,
+        editor: defaultEditorSettings,
       },
     };
 

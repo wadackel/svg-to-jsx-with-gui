@@ -1,4 +1,28 @@
-export default `<svg width="214px" height="139px" viewBox="0 0 214 139" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+export const defaultSvgoPlugins = [
+  'convertColors',
+  'collapseGroups',
+  'removeDimensions',
+  'removeDesc',
+  'removeDoctype',
+  'removeEditorsNSData',
+  'removeEmptyAttrs',
+  'removeEmptyContainers',
+  'removeEmptyText',
+  'removeHiddenElems',
+  'removeMetadata',
+  'removeUselessDefs',
+  'removeUselessStrokeAndFill',
+  'removeXMLProcInst',
+];
+
+export const defaultEditorSettings = {
+  fontSize: 13,
+  tabSize: 2,
+  showGutter: true,
+  useSoftTabs: true,
+};
+
+export const defaultSvgString = `<svg width="214px" height="139px" viewBox="0 0 214 139" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
   <desc>Created with Sketch.</desc>
   <defs>
