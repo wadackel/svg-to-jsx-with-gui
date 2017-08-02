@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { easings } from '../styles';
 import SettingsForm from './SettingsForm';
 import Button from './internal/Button';
 import { Close } from '../icons/';
@@ -16,7 +17,7 @@ const DialogWrapper = styled.div`
   overflow-x: hidden;
   overflow-y: auto;
   transition-property: opacity, visibility, transform;
-  transition-timing-function: ease-out;
+  transition-timing-function: ${easings.easeOutQuart};
 
   &.dialog-enter {
     opacity: 0;
@@ -28,7 +29,7 @@ const DialogWrapper = styled.div`
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
-    transition-duration: 320ms;
+    transition-duration: 420ms;
   }
 
   &.dialog-leave {

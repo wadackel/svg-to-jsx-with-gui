@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { saveAs } from 'file-saver';
+import { palette, darken } from '../styles';
 import Footer from './Footer';
 import Settings from './Settings';
 import Editor from './Editor';
@@ -30,7 +31,7 @@ const EditorRow = styled.div`
       z-index: 11;
       width: 4px;
       height: 100%;
-      background: #2a2e44;
+      background: ${darken(palette.secondary, 0.3)};
       content: '';
     }
   }

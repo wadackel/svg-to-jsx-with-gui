@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import styled from 'styled-components';
+import { palette, easings } from '../styles';
 import SettingsDialog from './SettingsDialog';
 import Button from './internal/Button';
 import { Cog } from '../icons/';
@@ -16,13 +17,13 @@ const OpenButton = Button.extend`
   height: 50px;
   padding: 0;
   overflow: hidden;
-  background: #353954;
+  background: ${palette.secondary};
   border: 3px solid #fff;
   border-radius: 50px;
   box-shadow: none;
   color: #fff;
   font-weight: bold;
-  transition-duration: 180ms;
+  transition-duration: 280ms;
 
   & svg {
     position: relative;
@@ -38,14 +39,14 @@ const OpenButton = Button.extend`
     width: 0;
     opacity: 0;
     visibility: hidden;
-    color: #4c5275;
-    transition: all 80ms ease-out 80ms;
+    color: ${palette.secondaryLight};
+    transition: all 80ms ${easings.easeOutQuart} 80ms;
   }
 
   &:hover {
     width: 150px;
     background-color: #fff;
-    color: #4c5275;
+    color: ${palette.secondaryLight};
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
 
     & span {

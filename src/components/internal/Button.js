@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { easings } from '../../styles';
 
 const Button = styled.button`
   display: inline-flex;
@@ -17,7 +18,7 @@ const Button = styled.button`
   text-decoration: none;
   cursor: pointer;
   user-select: none;
-  transition: all 120ms ease-out;
+  transition: all 180ms ${easings.easeOutQuart};
 
   &:focus {
     outline: none;

@@ -4,6 +4,7 @@ import AceEditor from 'react-ace';
 import 'brace/mode/html';
 import 'brace/mode/jsx';
 import 'brace/theme/monokai';
+import { palette, darken, brighten } from '../styles';
 
 const EditorHeader = styled.div`
   display: flex;
@@ -13,7 +14,7 @@ const EditorHeader = styled.div`
   z-index: 10;
   height: 40px;
   padding: 0 20px;
-  background: #31364f;
+  background: ${palette.secondaryDark};
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.22);
   color: #fff;
 `;
@@ -26,7 +27,7 @@ const EditorTitle = styled.div`
 const EditorWrapper = styled.div`
   position: relative;
   height: calc(100vh - 60px);
-  background: #353954;
+  background: ${palette.secondary};
   font-size: 14px;
   line-height: 1.6;
 
@@ -42,24 +43,28 @@ const EditorWrapper = styled.div`
 
   & .ace_editor,
   & .ace_gutter {
-    background: #353954 !important;
+    background: ${palette.secondary} !important;
   }
 
   & .ace_marker-layer .ace_selection {
-    background: #484d71 !important;
+    background: ${brighten(palette.secondary, 0.4)} !important;
   }
 
   & .ace_gutter {
-    color: #4c5275 !important;
+    color: ${palette.secondaryLight} !important;
   }
 
   & .ace_gutter-active-line,
   & .ace_marker-layer .ace_active-line {
-    background: #2e334d !important;
+    background: ${darken(palette.secondary, 0.1)} !important;
   }
 
   & .ace_scroller.ace_scroll-left {
-    box-shadow: 17px 0 16px -16px rgba(0, 0, 0, 0.2) inset !important;
+    transition: box-shadow 120ms ease-out;
+
+    &.ace_scroll-left {
+      box-shadow: 17px 0 16px -16px rgba(0, 0, 0, 0.2) inset !important;
+    }
   }
 
   & .ace_entity,

@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { palette } from '../styles';
 import Button from './internal/Button';
 
 const EditorButtonWrapper = Button.extend`
   padding: 0 20px;
   height: 40px;
   border-left: 1px solid rgba(255, 255, 255, 0.1);
-  background: #31364f;
+  background: ${palette.secondaryDark};
   color: #fff;
   font-size: 0.75rem;
 
   &:hover {
-    background-color: #4c5275;
+    background-color: ${palette.secondaryLight};
   }
 
   &:active {

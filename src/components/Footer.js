@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { palette } from '../styles';
 import { Logo, GitHub } from '../icons/';
 
 const FooterWrapper = styled.div`
@@ -12,7 +13,7 @@ const FooterWrapper = styled.div`
   left: 0;
   z-index: 1000;
   height: 60px;
-  background: #4c5275;
+  background: ${palette.secondaryLight};
   color: #fff;
 `;
 
@@ -73,7 +74,7 @@ const Footer = () => (
     </FooterCol>
 
     <FooterCol right>
-      Made with <span style={{ fontSize: '1.28em', color: '#fd379a' }}>&#9829;</span> <a href="https://github.com/tsuyoshiwada">@tsuyoshiwada</a>.
+      Made with <span style={{ fontSize: '1.28em', color: palette.accent }}>&#9829;</span> <a href="https://github.com/tsuyoshiwada">@tsuyoshiwada</a>.
       <GitHubLink href="__todo__">
         <GitHub />
       </GitHubLink>
