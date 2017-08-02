@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { easings } from '../styles';
 import SettingsForm from './SettingsForm';
 import Button from './internal/Button';
-import { Close } from '../icons/';
+import { Close } from './icons/';
 
 const DialogWrapper = styled.div`
   position: fixed;

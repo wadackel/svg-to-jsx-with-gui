@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { palette } from '../styles';
-import { Logo, GitHub } from '../icons/';
+import { Logo, GitHub } from './icons/';
 
 const FooterWrapper = styled.div`
   display: flex;

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { palette, easings } from '../styles';
 import SettingsDialog from './SettingsDialog';
 import Button from './internal/Button';
-import { Cog } from '../icons/';
+import { Cog } from './icons/';
 import firstChild from '../utils/firstChild';
 
 
