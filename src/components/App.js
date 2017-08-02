@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { saveAs } from 'file-saver';
 import Footer from './Footer';
 import Settings from './Settings';
 import Editor from './Editor';
@@ -95,18 +96,6 @@ export default class App extends Component {
     this.cancelIfNeeded();
   }
 
-  handleChange = async (svg) => {
-    this.setState({ svg });
-    this.compile(svg);
-  };
-
-  handleSettingChange = (settings) => {
-    this.setState({ settings }, () => {
-      this.svg2jsx = this.createConverter();
-      this.compile(this.state.svg);
-    });
-  };
-
   async compile(svg) {
     const { promise, cancel } = makeCancelable(this.svg2jsx(svg));
     this.promise = promise;
@@ -125,6 +114,27 @@ export default class App extends Component {
       this.cancel = null;
     }
   }
+
+  handleChange = async (svg) => {
+    this.setState({ svg });
+    this.compile(svg);
+  };
+
+  handleSettingChange = (settings) => {
+    this.setState({ settings }, () => {
+      this.svg2jsx = this.createConverter();
+      this.compile(this.state.svg);
+    });
+  };
+
+  handleDownloadClick = (e) => {
+    e.preventDefault();
+
+    saveAs(
+      new Blob([this.state.jsx], { type: 'text/javascript;charset=utf-8' }),
+      'svg.jsx'
+    );
+  };
 
   render() {
     const {
@@ -167,6 +177,7 @@ export default class App extends Component {
                 />,
                 <EditorButton
                   icon={<Download />}
+                  onClick={this.handleDownloadClick}
                 >
                   Download
                 </EditorButton>,
