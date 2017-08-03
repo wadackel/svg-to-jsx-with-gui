@@ -67,13 +67,17 @@ const createSvgoPluginList = (options) => {
   }, [[array.shift()]]);
 };
 
+const normalizeErrorString = error => (
+  error.split('\n').shift()
+);
+
 const svgoProcessor = (options) => {
   const opts = createSvgoPluginList(options);
 
   return (value) => new Promise((resolve, reject) => {
     svg2js(value, (svg) => {
       if (svg.error) {
-        reject(new Error(svg.error));
+        reject(new Error(normalizeErrorString(svg.error)));
         return;
       }
 
