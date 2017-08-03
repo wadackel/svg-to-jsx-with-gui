@@ -4,7 +4,7 @@ import AceEditor from 'react-ace';
 import 'brace/mode/html';
 import 'brace/mode/jsx';
 import 'brace/theme/monokai';
-import { palette, darken, brighten } from '../styles';
+import { palette, darken, brighten } from '../../styles';
 
 const EditorHeader = styled.div`
   display: flex;

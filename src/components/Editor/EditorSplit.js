@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { palette, darken } from '../styles';
+import { palette, darken } from '../../styles';
 
 const EditorRow = styled.div`
   display: flex;

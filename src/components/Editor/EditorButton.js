@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { palette } from '../styles';
-import Button from './internal/Button';
+import { palette } from '../../styles';
+import Button from '../internal/Button';
+
 
 const EditorButtonWrapper = Button.extend`
   padding: 0 20px;
@@ -32,6 +33,7 @@ const IconWrapper = styled.span`
     fill: #fff;
   }
 `;
+
 
 export default class EditorButton extends Component {
   handleClick = (e) => {

@@ -1,18 +1,9 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { saveAs } from 'file-saver';
 import { palette, darken } from '../styles';
-import { Copy, Download } from './icons/';
-import Droppable from './Droppable';
-import Footer from './Footer';
-import Settings from './Settings';
-import Editor from './Editor';
-import EditorButton from './EditorButton';
-import EditorRow from './EditorRow';
-import ErrorPopover from './ErrorPopover';
-import withCopy from './hoc/withCopy';
 import svg2jsx from '../svg2jsx/';
 import file2string from '../utils/file2string';
+import saveScript from '../utils/saveScript';
 import {
   filterSvgProcessor,
   svgoProcessor,
@@ -24,9 +15,16 @@ import {
   defaultEditorSettings,
   defaultSvgString,
 } from '../constants';
-
-
-const EditorCopyButton = withCopy(EditorButton);
+import Droppable from './Droppable';
+import Footer from './Footer';
+import Settings from './Settings';
+import ErrorPopover from './ErrorPopover';
+import {
+  Editor,
+  EditorSplit,
+  EditorCopyButton,
+  EditorDownloadButton,
+} from './Editor/';
 
 
 export default class App extends Component {
@@ -110,11 +108,7 @@ export default class App extends Component {
 
   handleDownloadClick = (e) => {
     e.preventDefault();
-
-    saveAs(
-      new Blob([this.state.jsx], { type: 'text/javascript;charset=utf-8' }),
-      'svg.jsx'
-    );
+    saveScript(this.state.jsx, 'svg.jsx');
   };
 
   render() {
@@ -129,7 +123,7 @@ export default class App extends Component {
       <Droppable
         onDrop={this.handleDrop}
       >
-        <EditorRow>
+        <EditorSplit>
           <div>
             <Editor
               focus
@@ -148,7 +142,6 @@ export default class App extends Component {
               value={jsx}
               buttons={[
                 <EditorCopyButton
-                  icon={<Copy />}
                   textBy={() => jsx}
                   renderer={(success, failure) => {
                     if (!success && !failure) {
@@ -160,17 +153,16 @@ export default class App extends Component {
                     }
                   }}
                 />,
-                <EditorButton
-                  icon={<Download />}
+                <EditorDownloadButton
                   onClick={this.handleDownloadClick}
                 >
                   Download
-                </EditorButton>,
+                </EditorDownloadButton>,
               ]}
               {...settings.editor}
             />
           </div>
-        </EditorRow>
+        </EditorSplit>
 
         <Footer />
 
