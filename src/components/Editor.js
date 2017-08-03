@@ -139,6 +139,9 @@ export default class Editor extends Component {
         </EditorHeader>
 
         <AceEditor
+          editorProps={{
+            $blockScrolling: true,
+          }}
           {...rest}
           showPrintMargin={false}
           setOptions={{
