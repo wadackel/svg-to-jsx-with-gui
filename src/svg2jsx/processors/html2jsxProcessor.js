@@ -7,7 +7,11 @@ const html2jsxProcessor = (options) => {
   });
 
   return (value) => new Promise((resolve, reject) => {
-    resolve(converter.convert(value).trim());
+    try {
+      resolve(converter.convert(value).trim());
+    } catch (e) {
+      reject(e);
+    }
   });
 };
 
