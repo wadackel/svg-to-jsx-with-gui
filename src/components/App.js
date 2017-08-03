@@ -7,6 +7,7 @@ import Footer from './Footer';
 import Settings from './Settings';
 import Editor from './Editor';
 import EditorButton from './EditorButton';
+import ErrorPopover from './ErrorPopover';
 import withCopy from './hoc/withCopy';
 import svg2jsx from '../svg2jsx/';
 import {
@@ -129,6 +130,7 @@ export default class App extends Component {
     const {
       svg,
       jsx,
+      error,
       settings,
     } = this.state;
 
@@ -182,6 +184,8 @@ export default class App extends Component {
           settings={settings}
           onChange={this.handleSettingChange}
         />
+
+        <ErrorPopover>{error}</ErrorPopover>
       </div>
     );
   }

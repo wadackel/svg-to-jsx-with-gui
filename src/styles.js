@@ -6,6 +6,8 @@ export const palette = {
   secondary: '#353a54',
   secondaryLight: '#4c5275',
   accent: '#fd379a',
+  danger: '#f44336',
+  dangerDark: '#d32f2f',
 };
 
 export const easings = {
