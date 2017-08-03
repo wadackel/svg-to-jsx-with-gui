@@ -44,13 +44,13 @@ const DropzoneOverlay = styled.div`
   }
 `;
 
-const Droppable = ({ children, isDragOver, ...rest }) => (
+const Droppable = ({ children, isDragOver }) => (
   <div>
     {isDragOver &&
       <DropzoneOverlay>
         <div>
           <h2>DRAG &amp; DROP</h2>
-          <p>Let's drop your svg file!</p>
+          <p>Let&#39;s drop your svg file!</p>
         </div>
       </DropzoneOverlay>
     }

@@ -49,7 +49,7 @@ const pluginsData = {
 
 const createSvgoPluginList = (options) => {
   const array = options
-    .map(name => pluginsData[name] ? pluginsData[name] : null)
+    .map(name => (pluginsData[name] ? pluginsData[name] : null))
     .filter(plugin => !!plugin);
 
   return array.reduce((previous, current) => {
@@ -74,7 +74,7 @@ const normalizeErrorString = error => (
 const svgoProcessor = (options) => {
   const opts = createSvgoPluginList(options);
 
-  return (value) => new Promise((resolve, reject) => {
+  return value => new Promise((resolve, reject) => {
     svg2js(value, (svg) => {
       if (svg.error) {
         reject(new Error(normalizeErrorString(svg.error)));

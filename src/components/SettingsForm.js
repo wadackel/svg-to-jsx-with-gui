@@ -47,7 +47,7 @@ export const SettingsForm = () => (
 
     <h3>Editor <small>powered by <a href="https://github.com/securingsincity/react-ace">react-ace</a></small></h3>
     <Flex mx={-2} mb={2}>
-      <Box width={1/2} px={2}>
+      <Box width={1 / 2} px={2}>
         <Field>
           <label htmlFor="editor-fontSize">Font size</label>
           <Input
@@ -58,7 +58,7 @@ export const SettingsForm = () => (
           />
         </Field>
       </Box>
-      <Box width={1/2} px={2}>
+      <Box width={1 / 2} px={2}>
         <Field>
           <label htmlFor="editor-tabSize">Tab size</label>
           <Input
@@ -70,8 +70,8 @@ export const SettingsForm = () => (
         </Field>
       </Box>
     </Flex>
-    <Checkbox name="editor.useSoftTabs" value={true} parser={singleCheckbox}>Soft tab</Checkbox>
-    <Checkbox name="editor.showGutter" value={true} parser={singleCheckbox}>Show Line Numbers</Checkbox>
+    <Checkbox name="editor.useSoftTabs" value parser={singleCheckbox}>Soft tab</Checkbox>
+    <Checkbox name="editor.showGutter" value parser={singleCheckbox}>Show Line Numbers</Checkbox>
   </div>
 );
 

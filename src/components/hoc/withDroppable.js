@@ -3,7 +3,7 @@ import ReactDropzone from 'react-dropzone';
 import wrapDisplayName from 'recompose/wrapDisplayName';
 
 
-const withDroppable = (WrappedComponent) => (
+const withDroppable = WrappedComponent => (
   class Droppable extends Component {
     static displayName = wrapDisplayName(WrappedComponent, 'droppable');
 
@@ -40,7 +40,7 @@ const withDroppable = (WrappedComponent) => (
         onDrop,
         onDragEnter,
         onDragLeave,
-        ...rest,
+        ...rest
       } = this.props;
 
       const { isDragOver } = this.state;

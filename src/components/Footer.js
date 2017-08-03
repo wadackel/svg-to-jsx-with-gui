@@ -17,12 +17,13 @@ const FooterWrapper = styled.div`
   color: #fff;
 `;
 
+/* eslint-disable no-nested-ternary */
 const FooterCol = styled.div`
   flex: 1 1 33.3333%;
   font-size: 14px;
-  padding-left: ${props => props.left ? '20px' : '0'};
-  padding-right: ${props => props.right ? '20px' : '0'};
-  text-align: ${props => props.right ? 'right' : props.center ? 'center' : 'left'};
+  padding-left: ${props => (props.left ? '20px' : '0')};
+  padding-right: ${props => (props.right ? '20px' : '0')};
+  text-align: ${props => (props.right ? 'right' : props.center ? 'center' : 'left')};
 
   & a {
     text-decoration: none;
@@ -33,6 +34,7 @@ const FooterCol = styled.div`
     }
   }
 `;
+/* eslint-enable no-nested-ternary */
 
 const FooterTitle = styled.h1`
   margin: 0;

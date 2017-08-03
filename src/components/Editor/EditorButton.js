@@ -48,7 +48,7 @@ export default class EditorButton extends Component {
       children,
       icon,
       onClick,
-      ...rest,
+      ...rest
     } = this.props;
 
     return (

@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
-import { palette, darken } from '../styles';
 import svg2jsx from '../svg2jsx/';
 import file2string from '../utils/file2string';
 import saveScript from '../utils/saveScript';
@@ -148,9 +146,8 @@ export default class App extends Component {
                       return 'Copy';
                     } else if (success) {
                       return 'Copied!';
-                    } else {
-                      return 'Error...';
                     }
+                    return 'Error...';
                   }}
                 />,
                 <EditorDownloadButton

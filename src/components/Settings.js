@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
-import styled from 'styled-components';
 import { palette, easings } from '../styles';
 import SettingsDialog from './SettingsDialog';
 import Button from './internal/Button';

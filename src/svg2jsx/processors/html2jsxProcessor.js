@@ -6,7 +6,7 @@ const html2jsxProcessor = (options) => {
     createClass: false,
   });
 
-  return (value) => new Promise((resolve, reject) => {
+  return value => new Promise((resolve, reject) => {
     try {
       resolve(converter.convert(value).trim());
     } catch (e) {

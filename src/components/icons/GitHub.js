@@ -1,6 +1,6 @@
 import React from 'react';
 
-const GitHub = (props) => (
+const GitHub = props => (
   <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" {...props}>
     <g stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
       <g transform="translate(-1156.000000, -658.000000)" fillRule="nonzero" fill="currentColor">

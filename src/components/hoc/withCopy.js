@@ -4,7 +4,7 @@ import wrapDisplayName from 'recompose/wrapDisplayName';
 import Clipboard from 'clipboard';
 
 
-const withCopy = (WrappedComponent) => (
+const withCopy = WrappedComponent => (
   class CopyableComponent extends Component {
     static displayName = wrapDisplayName(WrappedComponent, 'copyable');
 
@@ -61,7 +61,7 @@ const withCopy = (WrappedComponent) => (
       this.element = ReactDOM.findDOMNode(node);
 
       this.clipboard = new Clipboard(this.element, {
-        text: (trigger) => (
+        text: trigger => (
           typeof this.props.textBy === 'function' ? this.props.textBy(trigger) : ''
         ),
       });

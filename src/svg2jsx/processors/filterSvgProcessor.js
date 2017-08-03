@@ -1,8 +1,12 @@
 const filterSvgProcessor = () => (
-  (value) => new Promise((resolve, reject) => {
+  value => new Promise((resolve, reject) => {
     const result = value.match(/<svg[\S\s]*<\/svg>/g);
 
-    result ? resolve(result[0]) : reject(new Error('Not found svg element'))
+    if (result) {
+      resolve(result[0]);
+    } else {
+      reject(new Error('Not found svg element'));
+    }
   })
 );
 

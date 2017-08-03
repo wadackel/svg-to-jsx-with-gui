@@ -1,5 +1,5 @@
 import 'babel-polyfill';
-import { AppContainer } from 'react-hot-loader';
+import { AppContainer } from 'react-hot-loader'; // eslint-disable-line import/no-extraneous-dependencies
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
@@ -11,7 +11,7 @@ const render = (Component) => {
     <AppContainer>
       <Component />
     </AppContainer>,
-    root
+    root,
   );
 };
 
@@ -19,7 +19,7 @@ render(App);
 
 if (module.hot) {
   module.hot.accept('./components/App', () => {
-    const NextApp = require('./components/App').default;
+    const NextApp = require('./components/App').default; // eslint-disable-line global-require
     render(NextApp);
   });
 }

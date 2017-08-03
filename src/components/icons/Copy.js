@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Copy = (props) => (
+const Copy = props => (
   <svg width="12px" height="14px" viewBox="0 0 12 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" {...props}>
     <g stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
       <g transform="translate(-1029.000000, -13.000000)">

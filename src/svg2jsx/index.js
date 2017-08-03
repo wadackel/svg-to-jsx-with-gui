@@ -1,3 +1,5 @@
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable no-await-in-loop */
 class ConvertResult {
   constructor(value) {
     this.value = value;

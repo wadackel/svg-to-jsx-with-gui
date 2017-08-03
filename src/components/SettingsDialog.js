@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import keycode from 'keycode';
 import { easings } from '../styles';
-import SettingsForm from './SettingsForm';
+import SettingsForm from './SettingsForm'; // eslint-disable-line import/no-named-as-default
 import Button from './internal/Button';
 import { Close } from './icons/';
 
@@ -111,8 +111,6 @@ const CloseButton = Button.extend`
 
 
 export default class SettingsDialog extends Component {
-  mounted = false;
-
   componentDidMount() {
     this.mounted = true;
   }
@@ -120,6 +118,8 @@ export default class SettingsDialog extends Component {
   componentWillUnmount() {
     this.mounted = false;
   }
+
+  mounted = false;
 
   handleRef = (dialog) => {
     this.dialog = dialog;

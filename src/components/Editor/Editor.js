@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import AceEditor from 'react-ace';
-import 'brace/mode/html';
-import 'brace/mode/jsx';
-import 'brace/theme/monokai';
+import 'brace/mode/html'; // eslint-disable-line import/no-extraneous-dependencies
+import 'brace/mode/jsx'; // eslint-disable-line import/no-extraneous-dependencies
+import 'brace/theme/monokai'; // eslint-disable-line import/no-extraneous-dependencies
 import { palette, darken, brighten } from '../../styles';
 
 const EditorHeader = styled.div`
@@ -131,7 +131,7 @@ export default class Editor extends Component {
               {buttons.map((button, index) => (
                 React.cloneElement(button, {
                   ...button.props,
-                  key: index,
+                  key: index, // eslint-disable-line react/no-array-index-key
                 })
               ))}
             </EditorButtonList>

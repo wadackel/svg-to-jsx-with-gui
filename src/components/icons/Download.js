@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Download = (props) => (
+const Download = props => (
   <svg width="10px" height="11px" viewBox="0 0 10 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" {...props}>
     <g stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
       <g transform="translate(-1110.000000, -15.000000)">
