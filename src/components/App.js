@@ -8,10 +8,12 @@ import Settings from './Settings';
 import Editor from './Editor';
 import EditorButton from './EditorButton';
 import withCopy from './hoc/withCopy';
-import { factory } from '../utils/svg2jsx';
-import filterSvgProcessor from '../utils/processors/filterSvg';
-import svgoProcessor from '../utils/processors/svgo';
-import html2jsxProcessor from '../utils/processors/html2jsx';
+import svg2jsx from '../svg2jsx/';
+import {
+  filterSvgProcessor,
+  svgoProcessor,
+  html2jsxProcessor,
+} from '../svg2jsx/processors/';
 import makeCancelable from '../utils/makeCancelable';
 import {
   defaultSvgoPlugins,
@@ -52,29 +54,30 @@ export default class App extends Component {
     this.state = {
       svg: defaultSvgString,
       jsx: '',
+      error: null,
       settings: {
         svgoPlugins: defaultSvgoPlugins,
         editor: defaultEditorSettings,
       },
     };
 
-    this.svg2jsx = this.createConverter();
+    this.converter = this.createConverter();
     this.promise = null;
     this.cancel = null;
   }
 
   componentWillMount() {
-    this.compile(this.state.svg);
+    this.convert(this.state.svg);
   }
 
   componentWillUnmount() {
-    this.cancelIfNeeded();
+    this.convertCancelIfNeeded();
   }
 
   createConverter() {
     const { settings } = this.state;
 
-    return factory(
+    return svg2jsx(
       filterSvgProcessor(),
       svgoProcessor(settings.svgoPlugins),
       html2jsxProcessor({
@@ -83,19 +86,18 @@ export default class App extends Component {
     );
   }
 
-  async compile(svg) {
-    const { promise, cancel } = makeCancelable(this.svg2jsx(svg));
+  async convert(svg) {
+    const { promise, cancel } = makeCancelable(this.converter.convert(svg));
     this.promise = promise;
     this.cancel = cancel;
 
-    const jsx = await promise;
+    const { value: jsx, error } = await promise;
+    this.setState({ jsx, error });
     this.promise = null;
     this.cancel = null;
-
-    this.setState({ jsx });
   }
 
-  cancelIfNeeded() {
+  convertCancelIfNeeded() {
     if (this.cancel) {
       this.cancel();
       this.cancel = null;
@@ -104,13 +106,13 @@ export default class App extends Component {
 
   handleChange = async (svg) => {
     this.setState({ svg });
-    this.compile(svg);
+    this.convert(svg);
   };
 
   handleSettingChange = (settings) => {
     this.setState({ settings }, () => {
-      this.svg2jsx = this.createConverter();
-      this.compile(this.state.svg);
+      this.converter = this.createConverter();
+      this.convert(this.state.svg);
     });
   };
 

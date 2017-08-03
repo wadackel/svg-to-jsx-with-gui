@@ -70,10 +70,10 @@ const createSvgoPluginList = (options) => {
 const svgoProcessor = (options) => {
   const opts = createSvgoPluginList(options);
 
-  return async (value) => new Promise((resolve, reject) => {
+  return (value) => new Promise((resolve, reject) => {
     svg2js(value, (svg) => {
       if (svg.error) {
-        reject(svg.error);
+        reject(new Error(svg.error));
         return;
       }
 
@@ -82,9 +82,9 @@ const svgoProcessor = (options) => {
       const jsx = js2svg(svg, {
         indent: '  ',
         pretty: true,
-      });
+      }).data;
 
-      resolve(jsx.data);
+      resolve(jsx);
     });
   });
 };
