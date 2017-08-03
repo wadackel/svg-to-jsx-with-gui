@@ -24,6 +24,7 @@
     "react-dom": "^15.6.1",
     "react-drip-form": "^0.0.3",
     "react-drip-form-components": "^0.0.2",
+    "react-dropzone": "^3.13.4",
     "react-transition-group": "1.x",
     "recompose": "^0.24.0",
     "styled-components": "^2.1.1",

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { saveAs } from 'file-saver';
 import { palette, darken } from '../styles';
 import { Copy, Download } from './icons/';
+import Droppable from './Droppable';
 import Footer from './Footer';
 import Settings from './Settings';
 import Editor from './Editor';
@@ -10,6 +11,7 @@ import EditorButton from './EditorButton';
 import ErrorPopover from './ErrorPopover';
 import withCopy from './hoc/withCopy';
 import svg2jsx from '../svg2jsx/';
+import file2string from '../utils/file2string';
 import {
   filterSvgProcessor,
   svgoProcessor,
@@ -105,6 +107,16 @@ export default class App extends Component {
     }
   }
 
+  handleDrop = async (file) => {
+    try {
+      const svg = await file2string(file);
+      this.setState({ svg });
+      this.convert(svg);
+    } catch (e) {
+      this.setState({ error: e.message });
+    }
+  };
+
   handleChange = async (svg) => {
     this.setState({ svg });
     this.convert(svg);
@@ -135,10 +147,13 @@ export default class App extends Component {
     } = this.state;
 
     return (
-      <div>
+      <Droppable
+        onDrop={this.handleDrop}
+      >
         <EditorRow>
           <div>
             <Editor
+              focus
               mode="html"
               title="SVG"
               value={svg}
@@ -186,7 +201,7 @@ export default class App extends Component {
         />
 
         <ErrorPopover>{error}</ErrorPopover>
-      </div>
+      </Droppable>
     );
   }
 }
