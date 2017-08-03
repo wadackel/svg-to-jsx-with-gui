@@ -8,6 +8,7 @@ import Footer from './Footer';
 import Settings from './Settings';
 import Editor from './Editor';
 import EditorButton from './EditorButton';
+import EditorRow from './EditorRow';
 import ErrorPopover from './ErrorPopover';
 import withCopy from './hoc/withCopy';
 import svg2jsx from '../svg2jsx/';
@@ -24,28 +25,6 @@ import {
   defaultSvgString,
 } from '../constants';
 
-const EditorRow = styled.div`
-  display: flex;
-
-  & > div {
-    flex: 1 1 50%;
-    position: relative;
-    max-width: 50%;
-
-    &:not(:first-child)::before {
-      display: block;
-      position: absolute;
-      top: 0;
-      left: -2px;
-      bottom: 0;
-      z-index: 11;
-      width: 4px;
-      height: 100%;
-      background: ${darken(palette.secondary, 0.3)};
-      content: '';
-    }
-  }
-`;
 
 const EditorCopyButton = withCopy(EditorButton);
 
