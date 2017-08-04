@@ -4,8 +4,10 @@
     "start": "webpack-dev-server",
     "build": "echo \"todo\" && exit 1",
     "test": "npm run lint",
-    "lint": "npm run lint:js",
-    "lint:js": "eslint \"src/**/*.js\" \".eslintrc.js\" --no-ignore",
+    "lint": "npm run lint:js && npm run lint:css",
+    "lint:js": "eslint \"src/**/*.js\" \".eslintrc.js\" \".stylelintrc.js\" --no-ignore && npm run lint:js:css",
+    "lint:js:css": "cross-env NODE_ENV=jslint stylelint \"src/**/*.js\"",
+    "lint:css": "cross-env NODE_ENV=csslint stylelint \"src/**/*.js\"",
     "deploy": "echo \"todo\" && exit 1"
   },
   "author": "tsuyoshiwada",
@@ -38,6 +40,7 @@
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
+    "cross-env": "^5.0.3",
     "css-loader": "^0.28.4",
     "cssnano": "^3.10.0",
     "eslint": "^4.3.0",
@@ -52,6 +55,9 @@
     "postcss-loader": "^2.0.6",
     "react-hot-loader": "next",
     "style-loader": "^0.18.2",
+    "stylelint": "^8.0.0",
+    "stylelint-config-standard": "^17.0.0",
+    "stylelint-processor-styled-components": "^0.2.1",
     "webpack": "^3.3.0",
     "webpack-dev-server": "^2.5.1"
   }

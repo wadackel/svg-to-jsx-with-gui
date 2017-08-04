@@ -71,7 +71,7 @@ const EditorWrapper = styled.div`
   & .ace_keyword,
   & .ace_meta.ace_tag,
   & .ace_storage {
-    color: #dd9999 !important;
+    color: #d99 !important;
   }
 
   & .ace_entity.ace_name.ace_function,
