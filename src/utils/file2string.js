@@ -1,9 +1,9 @@
 // @flow
-const file2string = (file: File) => new Promise((resolve, reject) => {
+const file2string = (file: File): Promise<string> => new Promise((resolve, reject) => {
   const reader = new FileReader();
 
   reader.onload = () => {
-    resolve(reader.result);
+    resolve(reader.result.toString());
   };
 
   reader.onerror = (e) => {

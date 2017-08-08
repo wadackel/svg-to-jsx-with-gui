@@ -29,7 +29,6 @@ export const SettingsForm = () => (
       <Checkbox value="convertPathData">Round/rewrite paths</Checkbox>
       <Checkbox value="convertShapeToPath">Shapes to (smaller) paths</Checkbox>
       <Checkbox value="mergePaths">Merge paths</Checkbox>
-      <Checkbox value="removeDimensions">Prefer viewBox to width / height</Checkbox>
       <Checkbox value="removeDesc">Remove <code>&lt;desc&gt;</code></Checkbox>
       <Checkbox value="removeDoctype">Remove doctype</Checkbox>
       <Checkbox value="removeEditorsNSData">Remove editor data</Checkbox>
@@ -41,7 +40,6 @@ export const SettingsForm = () => (
       <Checkbox value="removeTitle">Remove <code>&lt;title&gt;</code></Checkbox>
       <Checkbox value="removeUselessDefs">Remove unused defs</Checkbox>
       <Checkbox value="removeUselessStrokeAndFill">Remove useless stroke & fill</Checkbox>
-      <Checkbox value="removeViewBox">Remove viewBox</Checkbox>
       <Checkbox value="removeXMLProcInst">Remove XML instructions</Checkbox>
     </FieldGroup>
 

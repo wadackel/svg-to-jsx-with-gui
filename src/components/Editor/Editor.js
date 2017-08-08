@@ -106,12 +106,13 @@ const EditorButtonList = styled.div`
 
 type Props = {
   title: string;
-  buttons?: Array<React$Element<*>>;
+  buttons: ?Array<React$Element<*>>;
+  showGutter?: boolean;
   useSoftTabs?: boolean;
 };
 
 export default class Editor extends Component {
-  static defaultProps: * = {
+  static defaultProps: $Shape<Props> = {
     buttons: null,
     showGutter: false,
     useSoftTabs: false,

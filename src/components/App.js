@@ -1,7 +1,8 @@
+// @flow
 import React, { Component } from 'react';
-import svg2jsx from '../svg2jsx/';
 import file2string from '../utils/file2string';
 import saveScript from '../utils/saveScript';
+import Converter from '../svg2jsx/';
 import {
   filterSvgProcessor,
   svgoProcessor,
@@ -25,8 +26,38 @@ import {
 } from './Editor/';
 
 
+type Props = {
+};
+
+type SettingsState = {
+  svgoPlugins: Array<string>;
+  editor: {
+    fontSize: number;
+    tabSize: number;
+    showGutter: boolean;
+    useSoftTabs: boolean;
+  };
+};
+
+type State = {
+  svg: string;
+  jsx: string;
+  error: ?string;
+  settings: SettingsState;
+};
+
+
+const STORE_SETTINGS_KEY = 'settings';
+
+
 export default class App extends Component {
-  constructor(props) {
+  props: Props;
+  state: State;
+  converter: Converter;
+  promise: ?Promise<{ value: string; error: ?string }>;
+  cancel: ?Function;
+
+  constructor(props: Props) {
     super(props);
 
     this.state = {
@@ -45,6 +76,7 @@ export default class App extends Component {
   }
 
   componentWillMount() {
+    this.restoreSettings();
     this.convert(this.state.svg);
   }
 
@@ -55,7 +87,7 @@ export default class App extends Component {
   createConverter() {
     const { settings } = this.state;
 
-    return svg2jsx(
+    return new Converter(
       filterSvgProcessor(),
       svgoProcessor(settings.svgoPlugins),
       html2jsxProcessor({
@@ -64,7 +96,21 @@ export default class App extends Component {
     );
   }
 
-  async convert(svg) {
+  storeSettings(settings: $Shape<SettingsState>, callback?: () => void): void {
+    localStorage.setItem(STORE_SETTINGS_KEY, JSON.stringify(settings));
+    this.setState({ settings }, callback);
+  }
+
+  restoreSettings(callback?: () => void): void {
+    const storedData: ?string = localStorage.getItem(STORE_SETTINGS_KEY);
+
+    if (storedData) {
+      const settings: SettingsState = JSON.parse(storedData);
+      this.setState({ settings }, callback);
+    }
+  }
+
+  async convert(svg: string): * {
     const { promise, cancel } = makeCancelable(this.converter.convert(svg));
     this.promise = promise;
     this.cancel = cancel;
@@ -75,14 +121,14 @@ export default class App extends Component {
     this.cancel = null;
   }
 
-  convertCancelIfNeeded() {
+  convertCancelIfNeeded(): void {
     if (this.cancel) {
       this.cancel();
       this.cancel = null;
     }
   }
 
-  handleDrop = async (file) => {
+  handleDrop = async (file: File): * => {
     try {
       const svg = await file2string(file);
       this.setState({ svg });
@@ -92,19 +138,19 @@ export default class App extends Component {
     }
   };
 
-  handleChange = async (svg) => {
+  handleChange = (svg: string): void => {
     this.setState({ svg });
     this.convert(svg);
   };
 
-  handleSettingChange = (settings) => {
-    this.setState({ settings }, () => {
+  handleSettingChange = (settings: SettingsState): void => {
+    this.storeSettings(settings, () => {
       this.converter = this.createConverter();
       this.convert(this.state.svg);
     });
   };
 
-  handleDownloadClick = (e) => {
+  handleDownloadClick = (e: Event): void => {
     e.preventDefault();
     saveScript(this.state.jsx, 'svg.jsx');
   };

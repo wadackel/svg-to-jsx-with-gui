@@ -15,5 +15,6 @@ module.exports = {
   'rules': {
     'react/jsx-filename-extension': 'off',
     'react/no-find-dom-node': 'off',
+    'react/sort-comp': 'off',
   },
 };

@@ -25,7 +25,7 @@ class ConvertResult {
   }
 }
 
-class Converter {
+export default class Converter {
   processors: Array<Processor>;
 
   constructor(...processors: Array<Processor>) {
@@ -46,9 +46,3 @@ class Converter {
     return result.toObject();
   }
 }
-
-const svg2jsx = (...processors: Array<Processor>) => (
-  new Converter(...processors)
-);
-
-export default svg2jsx;

@@ -2,7 +2,6 @@
 export const defaultSvgoPlugins = [
   'convertColors',
   'collapseGroups',
-  'removeDimensions',
   'removeDesc',
   'removeDoctype',
   'removeEditorsNSData',
