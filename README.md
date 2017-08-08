@@ -1,13 +1,19 @@
 # SVG to JSX with GUI
 
+![SVG to JSX with GUI](https://raw.githubusercontent.com/tsuyoshiwada/svg-to-jsx-with-gui/artwork/repo-banner.png)
+
 [![Build Status](http://img.shields.io/travis/tsuyoshiwada/svg-to-jsx-with-gui.svg?style=flat-square)](https://travis-ci.org/tsuyoshiwada/svg-to-jsx-with-gui)
 
 > It's a tool to convert SVG to JSX on Web browser.
 
-![Screenshot](https://__todo__)
+https://tsuyoshiwada.github.io/svg-to-jsx-with-gui/
 
-https://__todo__
 
+
+
+## Screenshot
+
+![Screenshot](https://raw.githubusercontent.com/tsuyoshiwada/svg-to-jsx-with-gui/artwork/screenshot.png)
 
 
 ## Development
@@ -24,7 +30,7 @@ Run the tool locally. You can access it with http://localhost:3000 .
 $ npm start
 ```
 
-Unit testing, and Lint.
+Unit testing, and Lint and Typecheck (flow).
 
 ```bash
 $ npm test
@@ -33,7 +39,13 @@ $ npm test
 Build the tool.
 
 ```bash
-$ npm run build
+$ npm run dev
+```
+
+Production build.
+
+```bash
+$ npm run prod
 ```
 
 Deploy to GitHub Pages.
