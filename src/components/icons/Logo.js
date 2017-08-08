@@ -1,6 +1,7 @@
+// @flow
 import React from 'react';
 
-const Logo = props => (
+const Logo = (props: any) => (
   <svg width="214px" height="139px" viewBox="0 0 214 139" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" {...props}>
     <defs>
       <linearGradient x1="75.9899742%" y1="91.918713%" x2="19.295843%" y2="7.23037329%" id="a">

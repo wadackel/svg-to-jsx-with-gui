@@ -1,3 +1,4 @@
+// @flow
 import 'babel-polyfill';
 import { AppContainer } from 'react-hot-loader'; // eslint-disable-line import/no-extraneous-dependencies
 import React from 'react';
@@ -18,7 +19,7 @@ const render = (Component) => {
 render(App);
 
 if (module.hot) {
-  module.hot.accept('./components/App', () => {
+  (module.hot: any).accept('./components/App', () => {
     const NextApp = require('./components/App').default; // eslint-disable-line global-require
     render(NextApp);
   });

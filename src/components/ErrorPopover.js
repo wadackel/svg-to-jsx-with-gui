@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+// @flow
+import React from 'react';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import styled from 'styled-components';
 import { palette, easings } from '../styles';
@@ -63,30 +64,30 @@ const Popover = styled.div`
   }
 `;
 
-export default class ErrorPopover extends Component {
-  render() {
-    const { children } = this.props;
 
-    return (
-      <CSSTransitionGroup
-        component={firstChild}
-        transitionName="popover"
-        transitionEnterTimeout={320}
-        transitionLeaveTimeout={120}
-      >
-        {children &&
-          <Popover
-            onClick={this.handleClick}
-          >
-            <div>
-              <Warning width={16} height={16} />
-            </div>
-            <div>
-              {children}
-            </div>
-          </Popover>
-        }
-      </CSSTransitionGroup>
-    );
-  }
-}
+type Props = {
+  children: ?React$Node<any>;
+};
+
+const ErrorPopover = ({ children }: Props) => (
+  <CSSTransitionGroup
+    component={firstChild}
+    transitionName="popover"
+    transitionEnterTimeout={320}
+    transitionLeaveTimeout={120}
+  >
+    {children &&
+      <Popover>
+        <div>
+          <Warning width={16} height={16} />
+        </div>
+        <div>
+          {children}
+        </div>
+      </Popover>
+    }
+  </CSSTransitionGroup>
+);
+
+
+export default ErrorPopover;

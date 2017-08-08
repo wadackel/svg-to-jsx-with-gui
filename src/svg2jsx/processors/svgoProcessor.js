@@ -1,3 +1,4 @@
+// @flow
 import svg2js from 'svgo/lib/svgo/svg2js';
 import js2svg from 'svgo/lib/svgo/js2svg';
 import plugins from 'svgo/lib/svgo/plugins';
@@ -22,6 +23,7 @@ import removeUselessDefs from 'svgo/plugins/removeUselessDefs';
 import removeUselessStrokeAndFill from 'svgo/plugins/removeUselessStrokeAndFill';
 import removeViewBox from 'svgo/plugins/removeViewBox';
 import removeXMLProcInst from 'svgo/plugins/removeXMLProcInst';
+import type { Processor } from '../index';
 
 const pluginsData = {
   cleanupIDs,
@@ -52,10 +54,10 @@ const createSvgoPluginList = (options) => {
     .map(name => (pluginsData[name] ? pluginsData[name] : null))
     .filter(plugin => !!plugin);
 
-  return array.reduce((previous, current) => {
+  return array.reduce((previous: any, current: any) => {
     let groupExists = false;
 
-    const results = previous.map((data) => {
+    const results = previous.map((data: any) => {
       if (data[0].type === current.type) {
         groupExists = true;
         return [...data, current];
@@ -71,7 +73,7 @@ const normalizeErrorString = error => (
   error.split('\n').shift()
 );
 
-const svgoProcessor = (options) => {
+const svgoProcessor = (options: Array<string>): Processor => {
   const opts = createSvgoPluginList(options);
 
   return value => new Promise((resolve, reject) => {

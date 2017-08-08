@@ -1,9 +1,16 @@
+// @flow
+
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-await-in-loop */
+
+export type Processor = (value: string) => Promise<string>;
+
 class ConvertResult {
-  constructor(value) {
+  value: string;
+  error: ?string = null;
+
+  constructor(value: string) {
     this.value = value;
-    this.error = null;
   }
 
   toString() {
@@ -19,11 +26,13 @@ class ConvertResult {
 }
 
 class Converter {
-  constructor(...processors) {
+  processors: Array<Processor>;
+
+  constructor(...processors: Array<Processor>) {
     this.processors = processors;
   }
 
-  async convert(value) {
+  async convert(value: string) {
     const result = new ConvertResult(value);
 
     try {
@@ -38,7 +47,7 @@ class Converter {
   }
 }
 
-const svg2jsx = (...processors) => (
+const svg2jsx = (...processors: Array<Processor>) => (
   new Converter(...processors)
 );
 

@@ -1,4 +1,5 @@
-const file2string = file => new Promise((resolve, reject) => {
+// @flow
+const file2string = (file: File) => new Promise((resolve, reject) => {
   const reader = new FileReader();
 
   reader.onload = () => {

@@ -1,4 +1,10 @@
-const makeCancelable = (promise) => {
+// @flow
+type CancelablePromise<T> = {
+  promise: Promise<T>;
+  cancel: Function;
+};
+
+const makeCancelable = <T>(promise: Promise<T>): CancelablePromise<T> => {
   let hasCanceled = false;
 
   const wrappedPromise = new Promise((resolve, reject) => {

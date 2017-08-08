@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { palette } from '../../styles';
@@ -35,8 +36,20 @@ const IconWrapper = styled.span`
 `;
 
 
+export type Props = {
+  children: React$Node<*>;
+  icon: React$Element<*>;
+  onClick?: Function;
+};
+
 export default class EditorButton extends Component {
-  handleClick = (e) => {
+  static defaultProps = {
+    onClick: null,
+  };
+
+  props: Props;
+
+  handleClick = (e: Event) => {
     e.preventDefault();
     if (typeof this.props.onClick === 'function') {
       this.props.onClick(e);

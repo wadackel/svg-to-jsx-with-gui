@@ -1,3 +1,4 @@
+// @flow
 import chroma from 'chroma-js';
 
 export const palette = {
@@ -14,5 +15,5 @@ export const easings = {
   easeOutQuart: 'cubic-bezier(0.165, 0.84, 0.44, 1)',
 };
 
-export const darken = (color, value) => chroma(color).darken(value);
-export const brighten = (color, value) => chroma(color).brighten(value);
+export const darken = (color: string, value: number) => chroma(color).darken(value);
+export const brighten = (color: string, value: number) => chroma(color).brighten(value);

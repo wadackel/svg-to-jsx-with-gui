@@ -1,3 +1,4 @@
+// @flow
 export { default as Close } from './Close';
 export { default as Cog } from './Cog';
 export { default as Copy } from './Copy';

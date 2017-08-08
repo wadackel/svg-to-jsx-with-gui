@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import AceEditor from 'react-ace';
@@ -102,13 +103,24 @@ const EditorButtonList = styled.div`
   text-align: right;
 `;
 
+
+type Props = {
+  title: string;
+  buttons?: Array<React$Element<*>>;
+  useSoftTabs?: boolean;
+};
+
 export default class Editor extends Component {
-  static defaultProps = {
+  static defaultProps: * = {
+    buttons: null,
     showGutter: false,
     useSoftTabs: false,
   };
 
-  handleRef = (editor) => {
+  props: Props;
+  editor: ?HTMLElement;
+
+  handleRef = (editor: HTMLElement) => {
     this.editor = editor;
   };
 

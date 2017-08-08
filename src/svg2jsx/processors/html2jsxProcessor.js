@@ -1,6 +1,13 @@
+// @flow
 import HTMLtoJSX from '@tsuyoshiwada/htmltojsx';
+import type { Processor } from '../index';
 
-const html2jsxProcessor = (options) => {
+type HTMLtoJSXOptions = {
+  indent?: string;
+  createClass?: boolean;
+};
+
+const html2jsxProcessor = (options: HTMLtoJSXOptions): Processor => {
   const converter = new HTMLtoJSX({
     ...options,
     createClass: false,

@@ -1,3 +1,4 @@
+// @flow
 export { default as Editor } from './Editor';
 export { default as EditorButton } from './EditorButton';
 export { default as EditorCopyButton } from './EditorCopyButton';

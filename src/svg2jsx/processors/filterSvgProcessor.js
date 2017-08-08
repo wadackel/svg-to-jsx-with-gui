@@ -1,4 +1,7 @@
-const filterSvgProcessor = () => (
+// @flow
+import type { Processor } from '../index';
+
+const filterSvgProcessor = (): Processor => (
   value => new Promise((resolve, reject) => {
     const result = value.match(/<svg[\S\s]*<\/svg>/g);
 

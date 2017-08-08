@@ -1,6 +1,7 @@
+// @flow
 import React from 'react';
 
-const Warning = props => (
+const Warning = (props: any) => (
   <svg width="22px" height="19px" viewBox="0 0 22 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" {...props}>
     <g id="Page-1" stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
       <g id="ic_warning_black_24px" transform="translate(-1.000000, -2.000000)">
