@@ -52,7 +52,8 @@ const pluginsData = {
 const createSvgoPluginList = (options) => {
   const array = options
     .map(name => (pluginsData[name] ? pluginsData[name] : null))
-    .filter(plugin => !!plugin);
+    .filter(plugin => !!plugin)
+    .map(plugin => ({ ...plugin, active: true }));
 
   return array.reduce((previous: any, current: any) => {
     let groupExists = false;
