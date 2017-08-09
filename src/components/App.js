@@ -70,14 +70,15 @@ export default class App extends Component {
       },
     };
 
-    this.converter = this.createConverter();
     this.promise = null;
     this.cancel = null;
   }
 
   componentWillMount() {
-    this.restoreSettings();
-    this.convert(this.state.svg);
+    this.restoreSettings(() => {
+      this.converter = this.createConverter();
+      this.convert(this.state.svg);
+    });
   }
 
   componentWillUnmount() {
@@ -107,6 +108,8 @@ export default class App extends Component {
     if (storedData) {
       const settings: SettingsState = JSON.parse(storedData);
       this.setState({ settings }, callback);
+    } else if (typeof callback === 'function') {
+      callback();
     }
   }
 
