@@ -4,13 +4,16 @@ module.exports = {
   'env': {
     'browser': true,
     'node': true,
+    'jest/globals': true,
   },
   'extends': [
-    'plugin:flowtype/recommended',
     'airbnb',
+    'plugin:flowtype/recommended',
+    'plugin:jest/recommended',
   ],
   'plugins': [
     'flowtype',
+    'jest',
   ],
   'rules': {
     'react/jsx-filename-extension': 'off',
