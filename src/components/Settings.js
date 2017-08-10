@@ -66,8 +66,9 @@ export const OpenButton = Button.extend`
 
 
 type Props = {
-  onChange: (settings: SettingsObject) => void;
   settings: SettingsObject;
+  onChange: (settings: SettingsObject) => void;
+  onRequestDefault: Function;
 };
 
 type State = {
@@ -93,7 +94,7 @@ export default class Settings extends Component {
 
   render() {
     const { open } = this.state;
-    const { settings } = this.props;
+    const { settings, onRequestDefault } = this.props;
 
     return (
       <div>
@@ -108,6 +109,7 @@ export default class Settings extends Component {
             <SettingsDialog
               values={settings}
               onRequestClose={this.handleClose}
+              onRequestDefault={onRequestDefault}
             />
           }
         </CSSTransitionGroup>

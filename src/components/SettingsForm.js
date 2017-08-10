@@ -1,8 +1,11 @@
+// @flow
 import React from 'react';
 import styled from 'styled-components';
 import { Flex, Box } from 'grid-styled';
 import { dripForm } from 'react-drip-form';
 import { FieldGroup, Input, Checkbox } from 'react-drip-form-components';
+import Button from './internal/Button';
+import { palette, brighten } from '../styles';
 
 const Field = styled.div`
   & label {
@@ -13,9 +16,42 @@ const Field = styled.div`
   }
 `;
 
+const FormFooter = styled.div`
+  margin-top: 60px;
+  padding-top: 60px;
+  border-top: 1px solid #e0e0e0;
+  text-align: center;
+`;
+
+const ResetButton = Button.extend`
+  height: 50px;
+  padding: 0 1.6em;
+  border-radius: 50px;
+  background: ${palette.secondaryLight};
+  color: #fff;
+
+  &:hover {
+    background: ${brighten(palette.secondaryLight, 1)};
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.26);
+  }
+
+  &:active {
+    background: ${brighten(palette.secondaryLight, 0.2)};
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.26);
+  }
+`;
+
+
 const singleCheckbox = v => !!v;
 
-export const SettingsForm = () => (
+type Props = {
+  handlers: {
+    onReset: Function; // eslint-disable-line react/no-unused-prop-types
+  };
+};
+
+
+export const SettingsForm = ({ handlers: { onReset } }: Props) => (
   <div>
     <h2>Settings</h2>
 
@@ -70,6 +106,10 @@ export const SettingsForm = () => (
     </Flex>
     <Checkbox name="editor.useSoftTabs" value parser={singleCheckbox}>Soft tab</Checkbox>
     <Checkbox name="editor.showGutter" value parser={singleCheckbox}>Show Line Numbers</Checkbox>
+
+    <FormFooter>
+      <ResetButton onClick={onReset}>Reset to Default</ResetButton>
+    </FormFooter>
   </div>
 );
 

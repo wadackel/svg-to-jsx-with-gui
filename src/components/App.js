@@ -149,6 +149,18 @@ export default class App extends Component {
     saveScript(this.state.jsx, 'svg.jsx');
   };
 
+  handleDefault = (): void => {
+    const settings = {
+      svgoPlugins: defaultSvgoPlugins,
+      editor: defaultEditorSettings,
+    };
+
+    this.storeSettings(settings, () => {
+      this.converter = this.createConverter();
+      this.convert(this.state.svg);
+    });
+  };
+
   render() {
     const {
       svg,
@@ -206,6 +218,7 @@ export default class App extends Component {
         <Settings
           settings={settings}
           onChange={this.handleSettingChange}
+          onRequestDefault={this.handleDefault}
         />
 
         <ErrorPopover>{error}</ErrorPopover>

@@ -117,6 +117,7 @@ type Props = {
   values: SettingsObject;
   onChange: Function;
   onRequestClose: Function;
+  onRequestDefault: Function;
 };
 
 
@@ -162,7 +163,11 @@ export default class SettingsDialog extends Component<any, Props, any> {
   };
 
   render() {
-    const { values, onChange } = this.props;
+    const {
+      values,
+      onChange,
+      onRequestDefault,
+    } = this.props;
 
     return (
       <DialogWrapper
@@ -183,6 +188,7 @@ export default class SettingsDialog extends Component<any, Props, any> {
             onInitialize={this.handleFormRef}
             values={values}
             onChange={onChange}
+            onReset={onRequestDefault}
           />
         </DialogInner>
       </DialogWrapper>
