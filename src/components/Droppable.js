@@ -1,6 +1,9 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
+import { easings } from '../styles';
+import firstChild from '../utils/firstChild';
 import withDroppable from './hoc/withDroppable';
 
 
@@ -15,6 +18,34 @@ const DropzoneOverlay = styled.div`
   left: 0;
   z-index: 9999;
   background: rgba(255, 255, 255, 0.96);
+  transition-property: opacity, visibility, transform;
+  transition-timing-function: ${easings.easeOutQuart};
+
+  &.overlay-enter {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.05);
+  }
+
+  &.overlay-enter.overlay-enter-active {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+    transition-duration: 180ms;
+  }
+
+  &.overlay-leave {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+  }
+
+  &.overlay-leave.overlay-leave-active {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.95);
+    transition-duration: 80ms;
+  }
 
   &::before {
     position: absolute;
@@ -54,14 +85,21 @@ type Props = {
 
 export const Droppable = ({ children, isDragOver }: Props) => (
   <div>
-    {isDragOver &&
-      <DropzoneOverlay>
-        <div>
-          <h2>DRAG &amp; DROP</h2>
-          <p>Let&#39;s drop your svg file!</p>
-        </div>
-      </DropzoneOverlay>
-    }
+    <CSSTransitionGroup
+      component={firstChild}
+      transitionName="overlay"
+      transitionEnterTimeout={180}
+      transitionLeaveTimeout={80}
+    >
+      {isDragOver &&
+        <DropzoneOverlay>
+          <div>
+            <h2>DRAG &amp; DROP</h2>
+            <p>Let&#39;s drop your svg file!</p>
+          </div>
+        </DropzoneOverlay>
+      }
+    </CSSTransitionGroup>
 
     {children}
   </div>
