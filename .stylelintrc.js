@@ -3,4 +3,7 @@ module.exports = {
     ? ['stylelint-processor-styled-components']
     : [],
   extends: 'stylelint-config-standard',
+  ignoreFiles: [
+    '**/*.spec.js',
+  ],
 };
