@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components#<ErrorPopover /> Should be render 1`] = `
+<CSSTransitionGroup
+  component={[Function]}
+  transitionAppear={false}
+  transitionEnter={true}
+  transitionEnterTimeout={320}
+  transitionLeave={true}
+  transitionLeaveTimeout={120}
+  transitionName="popover"
+/>
+`;

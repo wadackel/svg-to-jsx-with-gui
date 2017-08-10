@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components#<Droppable /> Should be render 1`] = `
+<div>
+  Foo
+</div>
+`;
+
+exports[`components#<Droppable /> Should be render overlay 1`] = `
+<div>
+  <styled.div>
+    <div>
+      <h2>
+        DRAG & DROP
+      </h2>
+      <p>
+        Let's drop your svg file!
+      </p>
+    </div>
+  </styled.div>
+  Bar
+</div>
+`;

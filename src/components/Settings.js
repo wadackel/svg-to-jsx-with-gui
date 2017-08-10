@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import { palette, easings } from '../styles';
@@ -5,9 +6,10 @@ import SettingsDialog from './SettingsDialog';
 import Button from './internal/Button';
 import { Cog } from './icons/';
 import firstChild from '../utils/firstChild';
+import type { SettingsObject } from '../types';
 
 
-const OpenButton = Button.extend`
+export const OpenButton = Button.extend`
   position: fixed;
   right: 20px;
   bottom: 80px;
@@ -63,17 +65,28 @@ const OpenButton = Button.extend`
 `;
 
 
+type Props = {
+  onChange: (settings: SettingsObject) => void;
+  settings: SettingsObject;
+};
+
+type State = {
+  open: boolean;
+};
+
+
 export default class Settings extends Component {
-  state = {
+  props: Props;
+  state: State = {
     open: false,
   };
 
-  handleOpenClick = (e) => {
+  handleOpenClick = (e: Event) => {
     e.preventDefault();
     this.setState({ open: true });
   };
 
-  handleClose = (values) => {
+  handleClose = (values: SettingsObject) => {
     this.setState({ open: false });
     this.props.onChange(values);
   };

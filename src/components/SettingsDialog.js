@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import keycode from 'keycode';
@@ -5,8 +6,10 @@ import { easings } from '../styles';
 import SettingsForm from './SettingsForm'; // eslint-disable-line import/no-named-as-default
 import Button from './internal/Button';
 import { Close } from './icons/';
+import type { SettingsObject } from '../types';
 
-const DialogWrapper = styled.div`
+
+export const DialogWrapper = styled.div`
   position: fixed;
   top: 0;
   right: 0;
@@ -79,7 +82,7 @@ const DialogInner = styled.div`
   }
 `;
 
-const CloseButton = Button.extend`
+export const CloseButton = Button.extend`
   position: fixed;
   top: 20px;
   right: 20px;
@@ -110,7 +113,18 @@ const CloseButton = Button.extend`
 `;
 
 
-export default class SettingsDialog extends Component {
+type Props = {
+  values: SettingsObject;
+  onChange: Function;
+  onRequestClose: Function;
+};
+
+
+export default class SettingsDialog extends Component<any, Props, any> {
+  mounted: boolean = false;
+  dialog: ?HTMLElement;
+  form: ?any;
+
   componentDidMount() {
     this.mounted = true;
   }
@@ -119,32 +133,30 @@ export default class SettingsDialog extends Component {
     this.mounted = false;
   }
 
-  mounted = false;
-
-  handleRef = (dialog) => {
+  handleRef = (dialog: HTMLElement) => {
     this.dialog = dialog;
   };
 
-  handleFormRef = (form) => {
+  handleFormRef = (form: any) => {
     this.form = form;
   };
 
-  handleTransitionEnd = (e) => {
-    if (this.mounted && e.target === this.dialog) {
+  handleTransitionEnd = (e: Event) => {
+    if (this.mounted && this.dialog && e.target === this.dialog) {
       this.dialog.focus();
     }
   };
 
-  handleKeyDown = (e) => {
-    if (keycode(e) === 'esc' && this.form.isValid()) {
+  handleKeyDown = (e: Event) => {
+    if (keycode(e) === 'esc' && this.form && this.form.isValid()) {
       this.props.onRequestClose(this.form.getValues());
     }
   };
 
-  handleCloseClick = (e) => {
+  handleCloseClick = (e: Event) => {
     e.preventDefault();
 
-    if (this.form.isValid()) {
+    if (this.form && this.form.isValid()) {
       this.props.onRequestClose(this.form.getValues());
     }
   };

@@ -14,7 +14,7 @@ import {
   defaultEditorSettings,
   defaultSvgString,
 } from '../constants';
-import Droppable from './Droppable';
+import Droppable from './Droppable'; // eslint-disable-line import/no-named-as-default
 import Footer from './Footer';
 import Settings from './Settings';
 import ErrorPopover from './ErrorPopover';
@@ -24,26 +24,17 @@ import {
   EditorCopyButton,
   EditorDownloadButton,
 } from './Editor/';
+import type { SettingsObject } from '../types';
 
 
 type Props = {
-};
-
-type SettingsState = {
-  svgoPlugins: Array<string>;
-  editor: {
-    fontSize: number;
-    tabSize: number;
-    showGutter: boolean;
-    useSoftTabs: boolean;
-  };
 };
 
 type State = {
   svg: string;
   jsx: string;
   error: ?string;
-  settings: SettingsState;
+  settings: SettingsObject;
 };
 
 
@@ -97,7 +88,7 @@ export default class App extends Component {
     );
   }
 
-  storeSettings(settings: $Shape<SettingsState>, callback?: () => void): void {
+  storeSettings(settings: $Shape<SettingsObject>, callback?: () => void): void {
     localStorage.setItem(STORE_SETTINGS_KEY, JSON.stringify(settings));
     this.setState({ settings }, callback);
   }
@@ -106,7 +97,7 @@ export default class App extends Component {
     const storedData: ?string = localStorage.getItem(STORE_SETTINGS_KEY);
 
     if (storedData) {
-      const settings: SettingsState = JSON.parse(storedData);
+      const settings: SettingsObject = JSON.parse(storedData);
       this.setState({ settings }, callback);
     } else if (typeof callback === 'function') {
       callback();
@@ -146,7 +137,7 @@ export default class App extends Component {
     this.convert(svg);
   };
 
-  handleSettingChange = (settings: SettingsState): void => {
+  handleSettingChange = (settings: SettingsObject): void => {
     this.storeSettings(settings, () => {
       this.converter = this.createConverter();
       this.convert(this.state.svg);

@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components#<Settings /> Should be render 1`] = `
+<div>
+  <CSSTransitionGroup
+    component={[Function]}
+    transitionAppear={false}
+    transitionEnter={true}
+    transitionEnterTimeout={320}
+    transitionLeave={true}
+    transitionLeaveTimeout={120}
+    transitionName="dialog"
+  />
+  <styled.button
+    onClick={[Function]}
+  >
+    <Cog />
+    <span>
+      Settings
+    </span>
+  </styled.button>
+</div>
+`;
+
+exports[`components#<Settings /> Should be render when open 1`] = `
+<div>
+  <CSSTransitionGroup
+    component={[Function]}
+    transitionAppear={false}
+    transitionEnter={true}
+    transitionEnterTimeout={320}
+    transitionLeave={true}
+    transitionLeaveTimeout={120}
+    transitionName="dialog"
+  >
+    <SettingsDialog
+      onRequestClose={[Function]}
+    />
+  </CSSTransitionGroup>
+  <styled.button
+    onClick={[Function]}
+  >
+    <Cog />
+    <span>
+      Settings
+    </span>
+  </styled.button>
+</div>
+`;

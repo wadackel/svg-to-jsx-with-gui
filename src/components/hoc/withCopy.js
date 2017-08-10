@@ -1,27 +1,45 @@
-/* eslint-disable react/prop-types */
+// @flow
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import wrapDisplayName from 'recompose/wrapDisplayName';
 import Clipboard from 'clipboard';
 
 
-const withCopy = WrappedComponent => (
+type Props = {
+  renderer: (success: boolean, failure: boolean) => React$Node<any>;
+  statusTimeout?: number;
+  textBy?: Function;
+  onCopySuccess?: ?Function;
+  onCopyFailure?: ?Function;
+};
+
+type State = {
+  success: boolean;
+  failure: boolean;
+};
+
+
+const withCopy = (WrappedComponent: Class<React$Component<*, *, *>>) => (
   class CopyableComponent extends Component {
     static displayName = wrapDisplayName(WrappedComponent, 'copyable');
-
     static defaultProps = {
       statusTimeout: 1000,
+      textBy: () => '',
+      onCopySuccess: null,
+      onCopyFailure: null,
     };
 
-    state = {
+    props: Props;
+    state: State = {
       success: false,
-      error: false,
+      failure: false,
     };
 
-    timer = 0;
+    timer: number = 0;
+    element: ?HTMLElement;
+    clipboard: any;
 
     componentWillUnmount() {
-      this.node = null;
       this.element = null;
       this.clipboard.destroy();
     }
@@ -57,21 +75,22 @@ const withCopy = WrappedComponent => (
       }, this.props.statusTimeout);
     }
 
-    handleRef = (node) => {
-      this.node = node;
-      this.element = ReactDOM.findDOMNode(node);
+    handleRef = (node: *) => {
+      const element = ReactDOM.findDOMNode(node); // eslint-disable-line
 
-      this.clipboard = new Clipboard(this.element, {
-        text: trigger => (
-          typeof this.props.textBy === 'function' ? this.props.textBy(trigger) : ''
-        ),
-      });
+      if (element instanceof HTMLElement) {
+        this.clipboard = new Clipboard(this.element, {
+          text: trigger => (
+            typeof this.props.textBy === 'function' ? this.props.textBy(trigger) : ''
+          ),
+        });
 
-      this.clipboard.on('success', this.handleSuccess);
-      this.clipboard.on('error', this.handleSuccess);
+        this.clipboard.on('success', this.handleSuccess);
+        this.clipboard.on('error', this.handleSuccess);
+      }
     };
 
-    handleSuccess = (e) => {
+    handleSuccess = (e: any) => {
       this.success();
       this.startClearTimeout();
 
@@ -80,7 +99,7 @@ const withCopy = WrappedComponent => (
       }
     };
 
-    handleFailure = (e) => {
+    handleFailure = (e: any) => {
       this.failure();
       this.startClearTimeout();
 

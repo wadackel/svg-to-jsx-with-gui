@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components#<Editor /> Should be render 1`] = `
+<styled.div>
+  <styled.div>
+    <styled.div />
+  </styled.div>
+  <ReactAce
+    cursorStart={1}
+    editorProps={
+      Object {
+        "$blockScrolling": true,
+      }
+    }
+    enableBasicAutocompletion={false}
+    enableLiveAutocompletion={false}
+    focus={false}
+    fontSize={12}
+    height="500px"
+    highlightActiveLine={true}
+    maxLines={null}
+    minLines={null}
+    mode=""
+    name="brace-editor"
+    onChange={null}
+    onLoad={null}
+    onPaste={null}
+    onScroll={null}
+    readOnly={false}
+    scrollMargin={
+      Array [
+        0,
+        0,
+        0,
+        0,
+      ]
+    }
+    setOptions={
+      Object {
+        "displayIndentGuides": true,
+        "useSoftTabs": false,
+      }
+    }
+    showGutter={false}
+    showPrintMargin={false}
+    style={Object {}}
+    tabSize={4}
+    theme="monokai"
+    value=""
+    width="500px"
+    wrapEnabled={false}
+  />
+</styled.div>
+`;

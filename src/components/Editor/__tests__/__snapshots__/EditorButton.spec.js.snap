@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components#<EditorButton /> Should be render 1`] = `
+<styled.button
+  onClick={[Function]}
+>
+  Foo
+</styled.button>
+`;
+
+exports[`components#<EditorButton /> Should be render icon 1`] = `
+<styled.button
+  onClick={[Function]}
+>
+  <styled.span>
+    <svg
+      height={10}
+      width={10}
+    >
+      <title>
+        icon
+      </title>
+    </svg>
+  </styled.span>
+  Bar
+</styled.button>
+`;

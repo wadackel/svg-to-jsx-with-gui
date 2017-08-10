@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import styled from 'styled-components';
 import withDroppable from './hoc/withDroppable';
@@ -44,7 +45,14 @@ const DropzoneOverlay = styled.div`
   }
 `;
 
-const Droppable = ({ children, isDragOver }) => (
+
+type Props = {
+  children: React$Node<any>;
+  isDragOver: boolean;
+};
+
+
+export const Droppable = ({ children, isDragOver }: Props) => (
   <div>
     {isDragOver &&
       <DropzoneOverlay>

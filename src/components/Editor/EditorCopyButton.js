@@ -6,8 +6,6 @@ import { Copy } from '../icons/';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class EditorCopyButton extends Component {
-  props: *;
-
   render() {
     return (
       <EditorButton

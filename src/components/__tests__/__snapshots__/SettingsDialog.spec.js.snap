@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components#<SettingsDialog /> Should be render 1`] = `
+<styled.div
+  innerRef={[Function]}
+  onKeyDown={[Function]}
+  onTransitionEnd={[Function]}
+  tabIndex="-1"
+>
+  <styled.button
+    onClick={[Function]}
+  >
+    <div>
+      <Close />
+      Close
+    </div>
+  </styled.button>
+  <styled.div
+    style={null}
+  >
+    <dripForm(SettingsForm)
+      onChange={null}
+      onClear={null}
+      onInitialize={[Function]}
+      onInvalidSubmit={null}
+      onReset={null}
+      onValidSubmit={null}
+      values={Object {}}
+    />
+  </styled.div>
+</styled.div>
+`;

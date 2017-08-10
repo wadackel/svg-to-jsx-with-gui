@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components#<Footer /> Should be render 1`] = `
+<styled.div>
+  <styled.div
+    left={true}
+  >
+    <styled.h1>
+      SVG to JSX with GUI
+      <small>
+        Open Source Tool
+      </small>
+    </styled.h1>
+  </styled.div>
+  <styled.div
+    center={true}
+    style={
+      Object {
+        "lineHeight": 1,
+      }
+    }
+  >
+    <Logo
+      height={33}
+      width={51}
+    />
+  </styled.div>
+  <styled.div
+    right={true}
+  >
+    Made with 
+    <span
+      style={
+        Object {
+          "color": "#fd379a",
+          "fontSize": "1.28em",
+        }
+      }
+    >
+      ♥
+    </span>
+     
+    <a
+      href="https://github.com/tsuyoshiwada"
+    >
+      @tsuyoshiwada
+    </a>
+    .
+    <styled.a
+      href="__todo__"
+    >
+      <GitHub />
+    </styled.a>
+  </styled.div>
+</styled.div>
+`;

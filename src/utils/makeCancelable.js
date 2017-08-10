@@ -4,6 +4,7 @@ type CancelablePromise<T> = {
   cancel: Function;
 };
 
+// eslint-disable-next-line arrow-parens
 const makeCancelable = <T>(promise: Promise<T>): CancelablePromise<T> => {
   let hasCanceled = false;
 

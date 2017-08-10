@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components#<EditorSplit /> Should be render 1`] = `
+<div
+  className="sc-bdVaJa PAoBY"
+/>
+`;
