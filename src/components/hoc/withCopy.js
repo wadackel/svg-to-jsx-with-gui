@@ -79,6 +79,7 @@ const withCopy = (WrappedComponent: Class<React$Component<*, *, *>>) => (
       const element = ReactDOM.findDOMNode(node); // eslint-disable-line
 
       if (element instanceof HTMLElement) {
+        this.element = element;
         this.clipboard = new Clipboard(this.element, {
           text: trigger => (
             typeof this.props.textBy === 'function' ? this.props.textBy(trigger) : ''
