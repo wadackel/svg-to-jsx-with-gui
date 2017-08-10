@@ -21,8 +21,8 @@ import removeMetadata from 'svgo/plugins/removeMetadata';
 import removeTitle from 'svgo/plugins/removeTitle';
 import removeUselessDefs from 'svgo/plugins/removeUselessDefs';
 import removeUselessStrokeAndFill from 'svgo/plugins/removeUselessStrokeAndFill';
-import removeViewBox from 'svgo/plugins/removeViewBox';
 import removeXMLProcInst from 'svgo/plugins/removeXMLProcInst';
+import removeXMLNS from 'svgo/plugins/removeXMLNS';
 import type { Processor } from '../index';
 
 const pluginsData = {
@@ -45,12 +45,26 @@ const pluginsData = {
   removeTitle,
   removeUselessDefs,
   removeUselessStrokeAndFill,
-  removeViewBox,
   removeXMLProcInst,
+  removeXMLNS,
+
+  // Not support namespace attributes
+  removeNS: {
+    type: 'perItem',
+    active: true,
+    description: '',
+    fn: (item) => {
+      item.eachAttr((attr) => {
+        if (attr.prefix) {
+          item.removeAttr(attr.name);
+        }
+      });
+    },
+  },
 };
 
 const createSvgoPluginList = (options) => {
-  const array = options
+  const array = [...options, 'removeNS']
     .map(name => (pluginsData[name] ? pluginsData[name] : null))
     .filter(plugin => !!plugin)
     .map(plugin => ({ ...plugin, active: true }));

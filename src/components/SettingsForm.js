@@ -77,6 +77,7 @@ export const SettingsForm = ({ handlers: { onReset } }: Props) => (
       <Checkbox value="removeUselessDefs">Remove unused defs</Checkbox>
       <Checkbox value="removeUselessStrokeAndFill">Remove useless stroke & fill</Checkbox>
       <Checkbox value="removeXMLProcInst">Remove XML instructions</Checkbox>
+      <Checkbox value="removeXMLNS">Remove <code>xmlns</code> attribute</Checkbox>
     </FieldGroup>
 
     <h3>Editor <small>powered by <a href="https://github.com/securingsincity/react-ace">react-ace</a></small></h3>
