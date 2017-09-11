@@ -1,5 +1,5 @@
 // @flow
-import HTMLtoJSX from '@tsuyoshiwada/htmltojsx';
+import HTMLtoJSX from 'htmltojsx';
 import type { Processor } from '../index';
 
 type HTMLtoJSXOptions = {
