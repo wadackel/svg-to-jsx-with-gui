@@ -6,7 +6,7 @@
 
 > It's a tool to convert SVG to JSX on Web browser.
 
-https://tsuyoshiwada.github.io/svg-to-jsx-with-gui/
+https://wadackel.github.io/svg-to-jsx-with-gui/
 
 
 
