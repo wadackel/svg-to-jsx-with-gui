@@ -1,8 +1,8 @@
 # SVG to JSX with GUI
 
-![SVG to JSX with GUI](https://raw.githubusercontent.com/tsuyoshiwada/svg-to-jsx-with-gui/artwork/repo-banner.png)
+![SVG to JSX with GUI](https://raw.githubusercontent.com/wadackel/svg-to-jsx-with-gui/artwork/repo-banner.png)
 
-[![Build Status](http://img.shields.io/travis/tsuyoshiwada/svg-to-jsx-with-gui.svg?style=flat-square)](https://travis-ci.org/tsuyoshiwada/svg-to-jsx-with-gui)
+[![Build Status](http://img.shields.io/travis/wadackel/svg-to-jsx-with-gui.svg?style=flat-square)](https://travis-ci.org/wadackel/svg-to-jsx-with-gui)
 
 > It's a tool to convert SVG to JSX on Web browser.
 
@@ -13,7 +13,7 @@ https://tsuyoshiwada.github.io/svg-to-jsx-with-gui/
 
 ## Screenshot
 
-![Screenshot](https://raw.githubusercontent.com/tsuyoshiwada/svg-to-jsx-with-gui/artwork/screenshot.png)
+![Screenshot](https://raw.githubusercontent.com/wadackel/svg-to-jsx-with-gui/artwork/screenshot.png)
 
 
 ## Development
@@ -65,12 +65,12 @@ $ npm run deploy
 1. Push to the branch: `git push origin my-new-feature`
 1. Submit a pull request :D
 
-Bugs, feature requests and comments are more than welcome in the [issues](https://github.com/tsuyoshiwada/svg-to-jsx-with-gui/issues).
+Bugs, feature requests and comments are more than welcome in the [issues](https://github.com/wadackel/svg-to-jsx-with-gui/issues).
 
 
 
 
 ## License
 
-[MIT © tsuyoshiwada](./LICENSE)
+[MIT © wadackel](./LICENSE)
 
